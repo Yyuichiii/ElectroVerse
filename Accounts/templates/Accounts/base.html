@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>ElectroVerse | {% block title %} {% endblock title %} </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+     <!--Custom CSS-->
+     <link rel="stylesheet" href="{% static 'Accounts/css/style.css' %}">
+</head>
+{% block style_container %} {% endblock style_container %}
+<body>
+    <nav>
+        <!-- Sidebar Navigation -->
+        <ul class="sidebar">
+            <li><a href="#"><i class="fa fa-close" style="font-size: 40px; color: white"
+                        onclick="hideSidebar()"></i></a></li>
+            <!-- Dropdown for Passive Components -->
+            <li class="dropdown">
+                <button class="dropbtn" style="font-size:25px;margin-top:2px;">Passive <i
+                        class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Resistors</a>
+                    <a href="#">Capacitors</a>
+                    <a href="#">Diodes</a>
+                    <a href="#">Inductors</a>
+                    <a href="#">Potentiometers</a>
+                </div>
+            </li>
+            <!-- Dropdown for Active Components -->
+            <li class="dropdown">
+                <button class="dropbtn" style="font-size:25px;margin-top:2px;">Active <i
+                        class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Transistors</a>
+                    <a href="#">Integrated Circuits</a>
+                    <a href="#">Thyristor</a>
+                    <a href="#">ICs</a>
+                    <a href="#">Photodiode</a>
+                </div>
+            </li>
+            <!-- Dropdown for Electromechanical Components -->
+            <li class="dropdown">
+                <button class="dropbtn" style="font-size:24.4px;margin-top:2px;">Electromechanical <i
+                        class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Relays</a>
+                    <a href="#">Switches</a>
+                    <a href="#">Motors</a>
+                    <a href="#">Solenoids</a>
+                    <a href="#">Fans & Blowers</a>
+                </div>
+            </li>
+            <!-- Dropdown for Displays -->
+            <li class="dropdown">
+                <button class="dropbtn" style="font-size:25px;margin-top:2px;">Displays <i
+                        class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">LCD Display</a>
+                    <a href="#">LED</a>
+                    <a href="#">OLED</a>
+                    <a href="#">TFT</a>
+                    <a href="#">TouchScreen</a>
+                </div>
+            </li>
+            <!-- Dropdown for Sensors -->
+            <li class="dropdown">
+                <button class="dropbtn" style="font-size:25px;">Sensors <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Temperature Sensor</a>
+                    <a href="#">Pressure Sensor</a>
+                    <a href="#">Motion Sensor</a>
+                    <a href="#">Light Sensor</a>
+                    <a href="#">Gas Sensor</a>
+                </div>
+            </li>
+            {% if not request.user.is_authenticated %}
+            <!-- Login Button -->
+            <li class="dropdown">
+                <button class="dropbtn" style="font-size:25px;margin-top:2px;" onclick="window.location.href='{% url "login" %}'">Login</button>
+            </li>
+            <!-- Register Button -->
+            <li class="dropdown">
+                <button class="dropbtn" style="font-size:25px;margin-top:2px;" onclick="window.location.href='{% url "registration" %}'">Register</button>
+            </li>
+            {% endif %}
+
+            {% if request.user.is_authenticated %}
+            <li class="dropdown">
+                <button class="dropbtn" style="font-size:25px;">{{user.name}} <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Orders</a>
+                    <a href="#">Change Password</a>
+                    <a href="{% url "logout" %}">Logout</a> 
+                </div>
+            </li>
+            <li class="dropdown">
+                <button class="dropbtn" style="font-size:25px;margin-top:2px;" onclick="window.location.href=''">Cart</button>
+            </li>
+            {% endif %}
+
+        </ul>
+
+        <!-- Main Navigation -->
+        <ul class="main-menu">
+            <li><a href="{% url "home" %}" class="c_home">ElectroVerse</a></li>
+            <!-- Dropdowns for Main Navigation (Hidden on Mobile) -->
+            <li class="hideOnMobile dropdown">
+                <button class="dropbtn">Passive <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Resistors</a>
+                    <a href="#">Capacitors</a>
+                    <a href="#">Diodes</a>
+                    <a href="#">Inductors</a>
+                    <a href="#">Potentiometers</a>
+                </div>
+            </li>
+            <li class="hideOnMobile dropdown">
+                <button class="dropbtn">Active <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Transistors</a>
+                    <a href="#">Integrated Circuits</a>
+                    <a href="#">Thyristor</a>
+                    <a href="#">ICs</a>
+                    <a href="#">Photodiode</a>
+                </div>
+            </li>
+            <li class="hideOnMobile dropdown">
+                <button class="dropbtn">Electromechanical <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Relays</a>
+                    <a href="#">Switches</a>
+                    <a href="#">Motors</a>
+                    <a href="#">Solenoids</a>
+                    <a href="#">Fans & Blowers</a>
+                </div>
+            </li>
+            <li class="hideOnMobile dropdown">
+                <button class="dropbtn">Displays <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">LCD Display</a>
+                    <a href="#">LED</a>
+                    <a href="#">OLED</a>
+                    <a href="#">TFT</a>
+                    <a href="#">TouchScreen</a>
+                </div>
+            </li>
+            <li class="hideOnMobile dropdown">
+                <button class="dropbtn">Sensors <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Temperature Sensor</a>
+                    <a href="#">Pressure Sensor</a>
+                    <a href="#">Motion Sensor</a>
+                    <a href="#">Light Sensor</a>
+                    <a href="#">Gas Sensor</a>
+                </div>
+            </li>
+            {% if not request.user.is_authenticated %}
+            
+            <!-- Login and Register Buttons (Hidden on Mobile) -->
+            
+            <li class="hideOnMobile"><a href="{% url "login" %}">Login</a></li>
+            <li class="hideOnMobile"><a href="{% url "registration" %}">Register</a></li>
+            <!-- Menu Button to Show Sidebar on Mobile -->
+            <li class="menu-button" onclick="showSidebar()"><a href="#"><i class="fa fa-bars"
+                        style="font-size: 30px; color: white"></i></a></li>
+            
+                        
+            {% endif %}
+
+
+            {% if request.user.is_authenticated %}
+            
+            <!-- Login and Register Buttons (Hidden on Mobile) -->
+            <li class="hideOnMobile dropdown">
+                <button class="dropbtn">{{user.name}} <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Orders</a>
+                    <a href="#">Change Password</a>
+                    <a href="{% url "logout" %}">Logout</a> 
+                    
+                </div>
+            </li>
+            <li class="hideOnMobile"><a href="">Cart</a></li>
+            <!-- Menu Button to Show Sidebar on Mobile -->
+            <li class="menu-button" onclick="showSidebar()"><a href="#"><i class="fa fa-bars"
+                        style="font-size: 30px; color: white"></i></a></li>
+            
+                        
+            {% endif %}
+                    
+        </ul>
+    </nav>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {{ message }}
+        
+    </div>
+    {% endfor %}
+    {% endif %}
+    
+    {% block main-content %} {% endblock main-content %}
+    
+    <div class="footer">
+        <h4>Footer</h4>
+    </div>
+    <script>
+        // JavaScript functions for showing and hiding the sidebar
+        function showSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.style.display = 'flex';
+        }
+
+        function hideSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
