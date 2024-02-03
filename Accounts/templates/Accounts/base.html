@@ -25,11 +25,11 @@
                 <button class="dropbtn" style="font-size:25px;margin-top:2px;">Passive <i
                         class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">Resistors</a>
-                    <a href="#">Capacitors</a>
-                    <a href="#">Diodes</a>
-                    <a href="#">Inductors</a>
-                    <a href="#">Potentiometers</a>
+                    <a href="{% url 'passive' type='Resistor' %}">Resistors</a>
+                    <a href="{% url 'passive' type='Capacitor' %}">Capacitors</a>
+                    <a href="{% url 'passive' type='Diode' %}">Diodes</a>
+                    <a href="{% url 'passive' type='Inductor' %}">Inductors</a>
+                    <a href="{% url 'passive' type='Potentiometer' %}">Potentiometers</a>
                 </div>
             </li>
             <!-- Dropdown for Active Components -->
@@ -114,11 +114,11 @@
             <li class="hideOnMobile dropdown">
                 <button class="dropbtn">Passive <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">Resistors</a>
-                    <a href="#">Capacitors</a>
-                    <a href="#">Diodes</a>
-                    <a href="#">Inductors</a>
-                    <a href="#">Potentiometers</a>
+                    <a href="{% url 'passive' type='Resistor' %}">Resistors</a>
+                    <a href="{% url 'passive' type='Capacitor' %}">Capacitors</a>
+                    <a href="{% url 'passive' type='Diode' %}">Diodes</a>
+                    <a href="{% url 'passive' type='Inductor' %}">Inductors</a>
+                    <a href="{% url 'passive' type='Potentiometer' %}">Potentiometers</a>
                 </div>
             </li>
             <li class="hideOnMobile dropdown">

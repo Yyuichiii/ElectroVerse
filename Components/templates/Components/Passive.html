@@ -1,0 +1,83 @@
+{% extends 'Accounts/base.html' %} 
+{% load static %} 
+{% block title %}{{component.heading}}{% endblock title %} 
+
+{% block style_container %} 
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        position: relative;
+        width: 100%;
+        max-width: 1300px; /* Adjust as needed */
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+        background-image: url('{{ component.background_image.url }}');
+        background-color: rgba(255, 255, 255, 0.1);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        {% comment %} opacity: 0.1; /* Adjust the opacity value (0.0 to 1.0) for the background image */ {% endcomment %}
+        z-index: -1;
+    }
+
+    h1, h2, h3 {
+        color: black;
+        /* font-family: monospace; */
+    }
+
+    p {
+        margin-bottom: 15px;
+        color: black;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .resistor-symbol {
+        /* Style for resistor symbol placeholder */
+        display: block;
+        margin: 20px auto;
+        /* Additional styles as needed */
+    }
+</style>
+{% endblock style_container %}
+
+{% block main-content %}
+<div class="container">
+
+
+    <!-- <img src="Resistor.jpg" alt=""> -->
+    <h1>{{component.heading}}</h1>
+
+    <p>{{component.para1|linebreaksbr}}</p>
+
+    <img src="{{ component.image1.url }}" alt="Resistor-symbol" class="resistor-symbol" style="box-sizing: border-box;border: 1px solid black;  width: 500px; ">
+    
+    <p>{{component.para2|linebreaksbr}}</p>
+    
+
+    {% comment %} <h3>There are different types of resistors.</h3>
+    <p><a href="LinearResistor.html">Linear Resistor</a><br><br>
+        <a href="Non-linearResistor.html">Non-linear Resistor</a>
+    </p> {% endcomment %}
+    
+    {% comment %} <p>Resistors find applications in various electronic circuits, such as voltage dividers, current limiters, signal conditioning, and biasing circuits.</p> {% endcomment %}
+
+    <h3>{{component.h2}}</h3>
+
+    <p>{{component.para3|linebreaksbr}}</p>
+    <!-- Placeholder for Ohm's Law image -->
+    <img src="{{ component.image2.url }}" alt="Ohm's Law" class="resistor-symbol " style="box-sizing: border-box;border: 1px solid black;  width: 500px; " >
+
+</div>
+
+{% endblock main-content%} 
