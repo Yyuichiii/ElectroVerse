@@ -1,7 +1,7 @@
 from django.db import models
 
 class Passive(models.Model):
-    type=models.CharField(max_length=10,unique=True)
+    type=models.CharField(max_length=20,unique=True)
     heading = models.CharField(max_length=100)
     background_image = models.ImageField(upload_to='Passive/')
     para1 = models.TextField()
@@ -12,5 +12,5 @@ class Passive(models.Model):
     image2 = models.ImageField(upload_to='Passive/')
 
     def __str__(self):
-        return "Passive Components: " + self.heading
+        return self.type
 
