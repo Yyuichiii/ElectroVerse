@@ -49,11 +49,11 @@
                 <button class="dropbtn" style="font-size:24.4px;margin-top:2px;">Electromechanical <i
                         class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">Relays</a>
-                    <a href="#">Switches</a>
-                    <a href="#">Motors</a>
-                    <a href="#">Solenoids</a>
-                    <a href="#">Fans & Blowers</a>
+                    <a href="{% url 'Electromechanical' type='Relay' %}">Relays</a>
+                    <a href="{% url 'Electromechanical' type='Switch' %}">Switches</a>
+                    <a href="{% url 'Electromechanical' type='Motor' %}">Motors</a>
+                    <a href="{% url 'Electromechanical' type='Solenoid' %}">Solenoids</a>
+                    <a href="{% url 'Electromechanical' type='Actuator' %}">Actuators</a>
                 </div>
             </li>
             <!-- Dropdown for Displays -->
@@ -61,22 +61,22 @@
                 <button class="dropbtn" style="font-size:25px;margin-top:2px;">Displays <i
                         class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">LCD Display</a>
-                    <a href="#">LED</a>
-                    <a href="#">OLED</a>
-                    <a href="#">TFT</a>
-                    <a href="#">TouchScreen</a>
+                    <a href="{% url 'Display' type='LCD' %}">LCD Display</a>
+                    <a href="{% url 'Display' type='LED' %}">LED</a>
+                    <a href="{% url 'Display' type='OLED' %}">OLED</a>
+                    <a href="{% url 'Display' type='TFT' %}">TFT</a>
+                    <a href="{% url 'Display' type='TouchScreen' %}">TouchScreen</a>
                 </div>
             </li>
             <!-- Dropdown for Sensors -->
             <li class="dropdown">
                 <button class="dropbtn" style="font-size:25px;">Sensors <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">Temperature Sensor</a>
-                    <a href="#">Pressure Sensor</a>
-                    <a href="#">Motion Sensor</a>
-                    <a href="#">Light Sensor</a>
-                    <a href="#">Gas Sensor</a>
+                    <a href="{% url 'Sensor' type='Temperature' %}">Temperature Sensor</a>
+                    <a href="{% url 'Sensor' type='Pressure' %}">Pressure Sensor</a>
+                    <a href="{% url 'Sensor' type='Motion' %}">Motion Sensor</a>
+                    <a href="{% url 'Sensor' type='Light' %}">Light Sensor</a>
+                    <a href="{% url 'Sensor' type='Gas' %}">Gas Sensor</a>
                 </div>
             </li>
             {% if not request.user.is_authenticated %}
@@ -134,31 +134,31 @@
             <li class="hideOnMobile dropdown">
                 <button class="dropbtn">Electromechanical <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">Relays</a>
-                    <a href="#">Switches</a>
-                    <a href="#">Motors</a>
-                    <a href="#">Solenoids</a>
-                    <a href="#">Fans & Blowers</a>
+                    <a href="{% url 'Electromechanical' type='Relay' %}">Relays</a>
+                    <a href="{% url 'Electromechanical' type='Switch' %}">Switches</a>
+                    <a href="{% url 'Electromechanical' type='Motor' %}">Motors</a>
+                    <a href="{% url 'Electromechanical' type='Solenoid' %}">Solenoids</a>
+                    <a href="{% url 'Electromechanical' type='Actuator' %}">Actuators</a>
                 </div>
             </li>
             <li class="hideOnMobile dropdown">
                 <button class="dropbtn">Displays <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">LCD Display</a>
-                    <a href="#">LED</a>
-                    <a href="#">OLED</a>
-                    <a href="#">TFT</a>
-                    <a href="#">TouchScreen</a>
+                    <a href="{% url 'Display' type='LCD' %}">LCD Display</a>
+                    <a href="{% url 'Display' type='LED' %}">LED</a>
+                    <a href="{% url 'Display' type='OLED' %}">OLED</a>
+                    <a href="{% url 'Display' type='TFT' %}">TFT</a>
+                    <a href="{% url 'Display' type='TouchScreen' %}">TouchScreen</a>
                 </div>
             </li>
             <li class="hideOnMobile dropdown">
                 <button class="dropbtn">Sensors <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">Temperature Sensor</a>
-                    <a href="#">Pressure Sensor</a>
-                    <a href="#">Motion Sensor</a>
-                    <a href="#">Light Sensor</a>
-                    <a href="#">Gas Sensor</a>
+                    <a href="{% url 'Sensor' type='Temperature' %}">Temperature Sensor</a>
+                    <a href="{% url 'Sensor' type='Pressure' %}">Pressure Sensor</a>
+                    <a href="{% url 'Sensor' type='Motion' %}">Motion Sensor</a>
+                    <a href="{% url 'Sensor' type='Light' %}">Light Sensor</a>
+                    <a href="{% url 'Sensor' type='Gas' %}">Gas Sensor</a>
                 </div>
             </li>
             {% if not request.user.is_authenticated %}

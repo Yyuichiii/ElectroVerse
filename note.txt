@@ -1,5 +1,6 @@
-types - IC,Thyristor,Diode,Amplifier
-
+types - Relay,Switch,Motor,Solenoid,Actuator
+LCD,LED,OLED,TFT,TouchScreen
+Temperature,Pressure,Motion,Light,Gas
 python manage.py runserver
 
 http://127.0.0.1:8000/admin/  

@@ -32,4 +32,52 @@ class Active(models.Model):
     def __str__(self):
         return self.type
 
-        
+class BaseComponents(models.Model):
+    type=models.CharField(max_length=20,unique=True)
+    heading = models.CharField(max_length=100)
+    content1 = models.TextField(blank=True)
+    content2 = models.TextField(blank=True)
+    content3 = models.TextField(blank=True)
+    content4 = models.TextField(blank=True)
+    content5 = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.type
+
+    class Meta:
+        abstract = True
+
+
+class Electromechanical(BaseComponents):
+    background_image = models.ImageField(upload_to='Electromechanical/',blank=True)
+    image1 = models.ImageField(upload_to='Electromechanical/',blank=True)
+    image2 = models.ImageField(upload_to='Electromechanical/',blank=True)
+    image3 = models.ImageField(upload_to='Electromechanical/',blank=True)
+    image4 = models.ImageField(upload_to='Electromechanical/',blank=True)
+    image5 = models.ImageField(upload_to='Electromechanical/',blank=True)
+    
+    def __str__(self):
+        return self.type
+
+class Display(BaseComponents):
+    background_image = models.ImageField(upload_to='Display/',blank=True)
+    image1 = models.ImageField(upload_to='Display/',blank=True)
+    image2 = models.ImageField(upload_to='Display/',blank=True)
+    image3 = models.ImageField(upload_to='Display/',blank=True)
+    image4 = models.ImageField(upload_to='Display/',blank=True)
+    image5 = models.ImageField(upload_to='Display/',blank=True)
+    
+    def __str__(self):
+        return self.type
+
+
+class Sensor(BaseComponents):
+    background_image = models.ImageField(upload_to='Sensor/',blank=True)
+    image1 = models.ImageField(upload_to='Sensor/',blank=True)
+    image2 = models.ImageField(upload_to='Sensor/',blank=True)
+    image3 = models.ImageField(upload_to='Sensor/',blank=True)
+    image4 = models.ImageField(upload_to='Sensor/',blank=True)
+    image5 = models.ImageField(upload_to='Sensor/',blank=True)
+    
+    def __str__(self):
+        return self.type

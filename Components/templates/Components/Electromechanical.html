@@ -1,0 +1,96 @@
+{% extends 'Accounts/base.html' %} 
+{% load static %} 
+
+{% block title %}
+  {{component.heading}}
+{% endblock title %} 
+
+{% block style_container %}
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('{{ component.background_image.url }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    h1, h2, h3 {
+      color: #333;
+      margin-left: 10px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      margin-left: 10px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      box-sizing: border-box;
+      border: 1px solid black;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .transistor-symbol {
+      display: block;
+      margin: 20px auto;
+      max-width: 96%;
+    }
+  </style>
+{% endblock style_container %} 
+
+{% block main-content %}
+  <h1>{{component.heading}}</h1>
+  {{component.content1|safe}} 
+
+  {% if component.image1 %}
+    <img src="{{ component.image1.url }}" alt="image1" loading="lazy">
+  {% endif %}
+
+  {{component.content2|safe}}
+  {% if component.image2 %}
+    <img src="{{ component.image2.url }}" alt="image2" loading="lazy">
+  {% endif %} 
+
+  {{component.content3|safe}}
+  {% if component.image3 %}
+    <img src="{{ component.image3.url }}" alt="image3" loading="lazy">
+  {% endif %} 
+
+  {{component.content4|safe}}
+  {% if component.image4 %}
+    <img src="{{ component.image4.url }}" alt="image4" loading="lazy">
+  {% endif %} 
+
+  {{component.content5|safe}}
+  {% if component.image5 %}
+    <img src="{{ component.image5.url }}" alt="image5" >
+  {% endif %}
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var images = document.querySelectorAll("img[loading='lazy']");
+      images.forEach(function(img) {
+        img.setAttribute("loading", "lazy");
+      });
+    });
+  </script>
+
+{% endblock main-content %}
