@@ -27,9 +27,9 @@
                 <div class="dropdown-content">
                     <a href="{% url 'passive' type='Resistor' %}">Resistors</a>
                     <a href="{% url 'passive' type='Capacitor' %}">Capacitors</a>
-                    <a href="{% url 'passive' type='Diode' %}">Diodes</a>
+                    <a href="{% url 'passive' type='Transformer' %}">Transformers</a>
                     <a href="{% url 'passive' type='Inductor' %}">Inductors</a>
-                    <a href="{% url 'passive' type='Potentiometer' %}">Potentiometers</a>
+                    {% comment %} <a href="{% url 'passive' type='Potentiometer' %}">Potentiometers</a> {% endcomment %}
                 </div>
             </li>
             <!-- Dropdown for Active Components -->
@@ -37,11 +37,11 @@
                 <button class="dropbtn" style="font-size:25px;margin-top:2px;">Active <i
                         class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">Transistors</a>
-                    <a href="#">Integrated Circuits</a>
-                    <a href="#">Thyristor</a>
-                    <a href="#">ICs</a>
-                    <a href="#">Photodiode</a>
+                    <a href="{% url 'active' type='Transistor' %}">Transistors</a>
+                    <a href="{% url 'active' type='IC' %}">Integrated Circuits</a>
+                    <a href="{% url 'active' type='Thyristor' %}">Thyristor</a>
+                    <a href="{% url 'active' type='Diode' %}">Diodes</a>
+                    <a href="{% url 'active' type='Amplifier' %}">Amplifiers</a>
                 </div>
             </li>
             <!-- Dropdown for Electromechanical Components -->
@@ -116,19 +116,19 @@
                 <div class="dropdown-content">
                     <a href="{% url 'passive' type='Resistor' %}">Resistors</a>
                     <a href="{% url 'passive' type='Capacitor' %}">Capacitors</a>
-                    <a href="{% url 'passive' type='Diode' %}">Diodes</a>
+                    <a href="{% url 'passive' type='Transformer' %}">Transformers</a>
                     <a href="{% url 'passive' type='Inductor' %}">Inductors</a>
-                    <a href="{% url 'passive' type='Potentiometer' %}">Potentiometers</a>
+                    {% comment %} <a href="{% url 'passive' type='Potentiometer' %}">Potentiometers</a> {% endcomment %}
                 </div>
             </li>
             <li class="hideOnMobile dropdown">
                 <button class="dropbtn">Active <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">Transistors</a>
-                    <a href="#">Integrated Circuits</a>
-                    <a href="#">Thyristor</a>
-                    <a href="#">ICs</a>
-                    <a href="#">Photodiode</a>
+                    <a href="{% url 'active' type='Transistor' %}">Transistors</a>
+                    <a href="{% url 'active' type='IC' %}">Integrated Circuits</a>
+                    <a href="{% url 'active' type='Thyristor' %}">Thyristor</a>
+                    <a href="{% url 'active' type='Diode' %}">Diodes</a>
+                    <a href="{% url 'active' type='Amplifier' %}">Amplifiers</a>
                 </div>
             </li>
             <li class="hideOnMobile dropdown">

@@ -1,4 +1,4 @@
-types - Capacitor, Diode, Inductor, Potentiometer
+types - IC,Thyristor,Diode,Amplifier
 
 python manage.py runserver
 
