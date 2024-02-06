@@ -25,11 +25,11 @@
                 <button class="dropbtn" style="font-size:25px;margin-top:2px;">Passive <i
                         class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="{% url 'passive' type='Resistor' %}">Resistors</a>
-                    <a href="{% url 'passive' type='Capacitor' %}">Capacitors</a>
-                    <a href="{% url 'passive' type='Transformer' %}">Transformers</a>
-                    <a href="{% url 'passive' type='Inductor' %}">Inductors</a>
-                    {% comment %} <a href="{% url 'passive' type='Potentiometer' %}">Potentiometers</a> {% endcomment %}
+                    <a href="{% url 'Components' Category='Passive' type='Resistor' %}">Resistors</a>
+                    <a href="{% url 'Components' Category='Passive' type='Capacitor' %}">Capacitors</a>
+                    <a href="{% url 'Components' Category='Passive' type='Transformer' %}">Transformers</a>
+                    <a href="{% url 'Components' Category='Passive' type='Inductor' %}">Inductors</a>
+                
                 </div>
             </li>
             <!-- Dropdown for Active Components -->
@@ -37,23 +37,23 @@
                 <button class="dropbtn" style="font-size:25px;margin-top:2px;">Active <i
                         class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="{% url 'active' type='Transistor' %}">Transistors</a>
-                    <a href="{% url 'active' type='IC' %}">Integrated Circuits</a>
-                    <a href="{% url 'active' type='Thyristor' %}">Thyristor</a>
-                    <a href="{% url 'active' type='Diode' %}">Diodes</a>
-                    <a href="{% url 'active' type='Amplifier' %}">Amplifiers</a>
+                    <a href="{% url 'Components' Category='Active' type='Transistor' %}">Transistors</a>
+                    <a href="{% url 'Components' Category='Active' type='IC' %}">Integrated Circuits</a>
+                    <a href="{% url 'Components' Category='Active' type='Thyristor' %}">Thyristor</a>
+                    <a href="{% url 'Components' Category='Active' type='Diode' %}">Diodes</a>
+                    <a href="{% url 'Components' Category='Active' type='Amplifier' %}">Amplifiers</a>
                 </div>
             </li>
             <!-- Dropdown for Electromechanical Components -->
             <li class="dropdown">
-                <button class="dropbtn" style="font-size:24.4px;margin-top:2px;">Electromechanical <i
+                <button class="dropbtn" style="font-size:24.4px;margin-top:2px;">ElectroMechanical <i
                         class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="{% url 'Electromechanical' type='Relay' %}">Relays</a>
-                    <a href="{% url 'Electromechanical' type='Switch' %}">Switches</a>
-                    <a href="{% url 'Electromechanical' type='Motor' %}">Motors</a>
-                    <a href="{% url 'Electromechanical' type='Solenoid' %}">Solenoids</a>
-                    <a href="{% url 'Electromechanical' type='Actuator' %}">Actuators</a>
+                    <a href="{% url 'Components' Category='ElectroMechanical' type='Relay' %}">Relays</a>
+                    <a href="{% url 'Components' Category='ElectroMechanical' type='Switch' %}">Switches</a>
+                    <a href="{% url 'Components' Category='ElectroMechanical' type='Motor' %}">Motors</a>
+                    <a href="{% url 'Components' Category='ElectroMechanical' type='Solenoid' %}">Solenoids</a>
+                    <a href="{% url 'Components' Category='ElectroMechanical' type='Actuator' %}">Actuators</a>
                 </div>
             </li>
             <!-- Dropdown for Displays -->
@@ -61,22 +61,22 @@
                 <button class="dropbtn" style="font-size:25px;margin-top:2px;">Displays <i
                         class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="{% url 'Display' type='LCD' %}">LCD Display</a>
-                    <a href="{% url 'Display' type='LED' %}">LED</a>
-                    <a href="{% url 'Display' type='OLED' %}">OLED</a>
-                    <a href="{% url 'Display' type='TFT' %}">TFT</a>
-                    <a href="{% url 'Display' type='TouchScreen' %}">TouchScreen</a>
+                    <a href="{% url 'Components' Category='Display' type='LCD' %}">LCD Display</a>
+                    <a href="{% url 'Components' Category='Display' type='LED' %}">LED</a>
+                    <a href="{% url 'Components' Category='Display' type='OLED' %}">OLED</a>
+                    <a href="{% url 'Components' Category='Display' type='TFT' %}">TFT</a>
+                    <a href="{% url 'Components' Category='Display' type='TouchScreen' %}">TouchScreen</a>
                 </div>
             </li>
             <!-- Dropdown for Sensors -->
             <li class="dropdown">
                 <button class="dropbtn" style="font-size:25px;">Sensors <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="{% url 'Sensor' type='Temperature' %}">Temperature Sensor</a>
-                    <a href="{% url 'Sensor' type='Pressure' %}">Pressure Sensor</a>
-                    <a href="{% url 'Sensor' type='Motion' %}">Motion Sensor</a>
-                    <a href="{% url 'Sensor' type='Light' %}">Light Sensor</a>
-                    <a href="{% url 'Sensor' type='Gas' %}">Gas Sensor</a>
+                    <a href="{% url 'Components' Category='Sensor' type='Temperature' %}">Temperature Sensor</a>
+                    <a href="{% url 'Components' Category='Sensor' type='Pressure' %}">Pressure Sensor</a>
+                    <a href="{% url 'Components' Category='Sensor' type='Motion' %}">Motion Sensor</a>
+                    <a href="{% url 'Components' Category='Sensor' type='Light' %}">Light Sensor</a>
+                    <a href="{% url 'Components' Category='Sensor' type='Gas' %}">Gas Sensor</a>
                 </div>
             </li>
             {% if not request.user.is_authenticated %}
@@ -114,51 +114,51 @@
             <li class="hideOnMobile dropdown">
                 <button class="dropbtn">Passive <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="{% url 'passive' type='Resistor' %}">Resistors</a>
-                    <a href="{% url 'passive' type='Capacitor' %}">Capacitors</a>
-                    <a href="{% url 'passive' type='Transformer' %}">Transformers</a>
-                    <a href="{% url 'passive' type='Inductor' %}">Inductors</a>
-                    {% comment %} <a href="{% url 'passive' type='Potentiometer' %}">Potentiometers</a> {% endcomment %}
+                    <div class="dropdown-content">
+                        <a href="{% url 'Components' Category='Passive' type='Resistor' %}">Resistors</a>
+                        <a href="{% url 'Components' Category='Passive' type='Capacitor' %}">Capacitors</a>
+                        <a href="{% url 'Components' Category='Passive' type='Transformer' %}">Transformers</a>
+                        <a href="{% url 'Components' Category='Passive' type='Inductor' %}">Inductors</a>
                 </div>
             </li>
             <li class="hideOnMobile dropdown">
                 <button class="dropbtn">Active <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="{% url 'active' type='Transistor' %}">Transistors</a>
-                    <a href="{% url 'active' type='IC' %}">Integrated Circuits</a>
-                    <a href="{% url 'active' type='Thyristor' %}">Thyristor</a>
-                    <a href="{% url 'active' type='Diode' %}">Diodes</a>
-                    <a href="{% url 'active' type='Amplifier' %}">Amplifiers</a>
+                    <a href="{% url 'Components' Category='Active' type='Transistor' %}">Transistors</a>
+                    <a href="{% url 'Components' Category='Active' type='IC' %}">Integrated Circuits</a>
+                    <a href="{% url 'Components' Category='Active' type='Thyristor' %}">Thyristor</a>
+                    <a href="{% url 'Components' Category='Active' type='Diode' %}">Diodes</a>
+                    <a href="{% url 'Components' Category='Active' type='Amplifier' %}">Amplifiers</a>
                 </div>
             </li>
             <li class="hideOnMobile dropdown">
-                <button class="dropbtn">Electromechanical <i class="fa fa-caret-down"></i></button>
+                <button class="dropbtn">ElectroMechanical <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="{% url 'Electromechanical' type='Relay' %}">Relays</a>
-                    <a href="{% url 'Electromechanical' type='Switch' %}">Switches</a>
-                    <a href="{% url 'Electromechanical' type='Motor' %}">Motors</a>
-                    <a href="{% url 'Electromechanical' type='Solenoid' %}">Solenoids</a>
-                    <a href="{% url 'Electromechanical' type='Actuator' %}">Actuators</a>
+                    <a href="{% url 'Components' Category='ElectroMechanical' type='Relay' %}">Relays</a>
+                    <a href="{% url 'Components' Category='ElectroMechanical' type='Switch' %}">Switches</a>
+                    <a href="{% url 'Components' Category='ElectroMechanical' type='Motor' %}">Motors</a>
+                    <a href="{% url 'Components' Category='ElectroMechanical' type='Solenoid' %}">Solenoids</a>
+                    <a href="{% url 'Components' Category='ElectroMechanical' type='Actuator' %}">Actuators</a>
                 </div>
             </li>
             <li class="hideOnMobile dropdown">
                 <button class="dropbtn">Displays <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="{% url 'Display' type='LCD' %}">LCD Display</a>
-                    <a href="{% url 'Display' type='LED' %}">LED</a>
-                    <a href="{% url 'Display' type='OLED' %}">OLED</a>
-                    <a href="{% url 'Display' type='TFT' %}">TFT</a>
-                    <a href="{% url 'Display' type='TouchScreen' %}">TouchScreen</a>
+                    <a href="{% url 'Components' Category='Display' type='LCD' %}">LCD Display</a>
+                    <a href="{% url 'Components' Category='Display' type='LED' %}">LED</a>
+                    <a href="{% url 'Components' Category='Display' type='OLED' %}">OLED</a>
+                    <a href="{% url 'Components' Category='Display' type='TFT' %}">TFT</a>
+                    <a href="{% url 'Components' Category='Display' type='TouchScreen' %}">TouchScreen</a>
                 </div>
             </li>
             <li class="hideOnMobile dropdown">
                 <button class="dropbtn">Sensors <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="{% url 'Sensor' type='Temperature' %}">Temperature Sensor</a>
-                    <a href="{% url 'Sensor' type='Pressure' %}">Pressure Sensor</a>
-                    <a href="{% url 'Sensor' type='Motion' %}">Motion Sensor</a>
-                    <a href="{% url 'Sensor' type='Light' %}">Light Sensor</a>
-                    <a href="{% url 'Sensor' type='Gas' %}">Gas Sensor</a>
+                    <a href="{% url 'Components' Category='Sensor' type='Temperature' %}">Temperature Sensor</a>
+                    <a href="{% url 'Components' Category='Sensor' type='Pressure' %}">Pressure Sensor</a>
+                    <a href="{% url 'Components' Category='Sensor' type='Motion' %}">Motion Sensor</a>
+                    <a href="{% url 'Components' Category='Sensor' type='Light' %}">Light Sensor</a>
+                    <a href="{% url 'Components' Category='Sensor' type='Gas' %}">Gas Sensor</a>
                 </div>
             </li>
             {% if not request.user.is_authenticated %}
