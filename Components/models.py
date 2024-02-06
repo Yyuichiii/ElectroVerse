@@ -1,5 +1,5 @@
 from django.db import models
-
+import os
 class Passive(models.Model):
     type=models.CharField(max_length=20,unique=True)
     heading = models.CharField(max_length=100)
@@ -81,3 +81,37 @@ class Sensor(BaseComponents):
     
     def __str__(self):
         return self.type
+
+
+def upload_path(instance, filename):
+    path=f'Component_Images/{instance.Category}'
+    return os.path.join(path, filename)
+
+class Component(models.Model):
+        
+	CATEGORY_CHOICES = [
+	('Active', 'Active'),
+	('Passive', 'Passive'),
+	('ElectroMechanical', 'ElectroMechanical'),
+	('Display', 'Display'),
+	('Sensor', 'Sensor'),]
+	
+	    
+	Category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+	Type = models.CharField(max_length=20,unique=True)
+	heading = models.CharField(max_length=100)
+	content1 = models.TextField(blank=True)
+	content2 = models.TextField(blank=True)
+	content3 = models.TextField(blank=True)
+	content4 = models.TextField(blank=True)
+	content5 = models.TextField(blank=True)
+	background_image = models.ImageField(upload_to=upload_path, blank=True)
+	image1 = models.ImageField(upload_to=upload_path, blank=True)
+	image2 = models.ImageField(upload_to=upload_path, blank=True)
+	image3 = models.ImageField(upload_to=upload_path, blank=True)
+	image4 = models.ImageField(upload_to=upload_path, blank=True)
+	image5 = models.ImageField(upload_to=upload_path, blank=True)
+     
+	def __str__(self):	
+	    return f"{self.Category} - {self.Type}"
+
