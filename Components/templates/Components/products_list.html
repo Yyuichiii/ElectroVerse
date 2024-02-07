@@ -1,0 +1,360 @@
+{% extends 'Accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+  
+{% endblock title %}
+
+{% block style_container %}
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #4d4d4d;
+}
+
+.container_search {
+  position: relative;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 100px;
+  .search {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background: crimson;
+    border-radius: 50%;
+    transition: all 1s;
+    z-index: 4;
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+    // box-shadow: 0 0 25px 0 crimson;
+    &:hover {
+      cursor: pointer;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      margin: auto;
+      top: 22px;
+      right: 0;
+      bottom: 0;
+      left: 22px;
+      width: 12px;
+      height: 2px;
+      background: white;
+      transform: rotate(45deg);
+      transition: all .5s;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      margin: auto;
+      top: -5px;
+      right: 0;
+      bottom: 0;
+      left: -5px;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      border: 2px solid white;
+      transition: all .5s;
+    }
+  }
+  input {
+    font-family: 'Inconsolata', monospace;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: none;
+    // border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: crimson;
+    color: white;
+    text-shadow: 0 0 10px crimson;
+    padding: 0 80px 0 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 25px 0 crimson,
+                0 20px 25px 0 rgba(0, 0, 0, 0.2);
+    // box-shadow: inset 0 0 25px 0 rgba(0, 0, 0, 0.5);
+    transition: all 1s;
+    opacity: 0;
+    z-index: 5;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+    &:hover {
+      cursor: pointer;
+    }
+    &:focus {
+      width: 300px;
+      opacity: 1;
+      cursor: text;
+    }
+    &:focus ~ .search {
+      right: -250px;
+      background: #151515;
+      z-index: 6;
+      &::before {
+        top: 0;
+        left: 0;
+        width: 25px;
+      }
+      &::after {
+        top: 0;
+        left: 0;
+        width: 25px;
+        height: 2px;
+        border: none;
+        background: white;
+        border-radius: 0%;
+        transform: rotate(-45deg);
+      }
+    }
+    &::placeholder {
+      color: white;
+      opacity: 0.5;
+      font-weight: bolder;
+    }
+  }
+}
+
+{% comment %} Card css {% endcomment %}
+@import url('https://fonts.googleapis.com/css?family=Muli:400,400i,700,700i');
+body{
+  font-family: 'Muli', sans-serif;
+}
+
+.wsk-cp-product{
+  background:#ddd;
+  padding:15px;
+  border-radius:15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  position:relative;
+  margin:20px auto;
+  border : 3px solid green;
+  
+}
+.wsk-cp-img{
+    border: 2px solid red;
+  position:absolute;
+  top:5px;
+  left:50%;
+  transform:translate(-50%);
+  -webkit-transform:translate(-50%);
+  -ms-transform:translate(-50%);
+  -moz-transform:translate(-50%);
+  -o-transform:translate(-50%);
+  -khtml-transform:translate(-50%);
+  width: 100%;
+  padding: 15px;
+  transition:all 0.2s ease-in-out;
+}
+.wsk-cp-img img{
+  width:100%;
+  transition: all 0.2s ease-in-out;
+  border-radius:12px;
+  height: 20%;
+  border: 2px solid black;
+}
+.wsk-cp-product:hover .wsk-cp-img{
+  top:-50px;
+}
+.wsk-cp-product:hover .wsk-cp-img img{
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+.wsk-cp-text{
+  padding-top:145%;
+  border: 2px solid yellow;
+}
+.wsk-cp-text .category{
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  padding:5px;
+  margin-bottom:15px;
+  border: 2px solid blue;
+  position:relative;
+  transition: all 0.2s ease-in-out;
+}
+.wsk-cp-text .category > *{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  -o-transform: translate(-50%,-50%);
+  -khtml-transform: translate(-50%,-50%);
+    
+}
+.wsk-cp-text .category .cart{
+    text-decoration:none;
+  padding: 12px 30px;
+  border: 1px solid #313131;
+  background:#212121;
+  color:#fff;
+  width:80%;
+  
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  border-radius:27px;
+  transition: all 0.05s ease-in-out;
+  
+}
+
+.wsk-cp-product:hover .wsk-cp-text .category .cart{
+  border-color:#ddd;
+  box-shadow: none;
+  padding: 11px 28px;
+}
+.wsk-cp-product:hover .wsk-cp-text .category{
+  margin-top: 5px;
+}
+.title-product{
+
+    border: 2px solid orange;
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    margin:5px auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  width:100%;
+}
+
+.detail{
+    text-decoration:none;
+    color:green;
+}
+
+.detail:hover{
+    font-size:20px;
+    color:red;  
+}
+
+@media screen and (max-width: 991px) {
+  .wsk-cp-product{
+    margin:40px auto;
+  }
+  .wsk-cp-product .wsk-cp-img{
+  top:-40px;
+}
+.wsk-cp-product .wsk-cp-img img{
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+  .wsk-cp-product .wsk-cp-text .category > span{
+  border-color:#ddd;
+  box-shadow: none;
+  padding: 11px 28px;
+}
+.wsk-cp-product .wsk-cp-text .category{
+  margin-top: 0px;
+}
+}
+
+
+</style>
+
+{% endblock style_container %}
+
+{% block main-content %}
+
+<div class="container_search">
+    <input type="text" placeholder="Search...">
+    <div class="search"></div>
+  </div>
+
+<div class="shell">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="wsk-cp-product">
+                    <div class="wsk-cp-img"> 
+                        <img src="https://3.bp.blogspot.com/-eDeTttUjHxI/WVSvmI-552I/AAAAAAAAAKw/0T3LN6jABKMyEkTRUUQMFxpe6PLvtcMMwCPcBGAYYCw/s1600/001-culture-clash-matthew-gianoulis.jpg" alt="Product" class="img-responsive" />
+                    </div>
+                
+                    <div class="wsk-cp-text">
+                        <div class="category">
+                            <a href="" class="cart" role="button">Add to Cart</a>
+                        </div>
+                        <div class="title-product">
+                            
+                            <a href="" title="Click to Read more" id="name" class="detail" role="button">{{component.Type}}</a>
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="wsk-cp-product">
+                    <div class="wsk-cp-img"> 
+                        {% comment %} src="{{ component.image1.url }}" {% endcomment %}
+                        <img src="{{component.background_image.url}}" alt="Product" class="img-responsive" />
+                    </div>
+                
+                    <div class="wsk-cp-text">
+                        <div class="category">
+                            <a href="" class="cart" role="button">Add to Cart</a>
+                        </div>
+                        <div class="title-product">
+                            
+                            <a href="" title="Click to Read more" id="name" class="detail" role="button">Product Name</a>
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>        
+    </div>    
+</div>   
+
+<script>
+ // Get all elements with the class name "detail"
+var elements = document.querySelectorAll(".detail");
+
+// Define the new content to be displayed on hover
+var newContent = "Read More";
+
+// Loop through each element and add event listeners for mouseenter and mouseleave
+elements.forEach(function(element) {
+    element.addEventListener("mouseenter", function() {
+        element.innerHTML = newContent;
+    });
+
+    element.addEventListener("mouseleave", function() {
+        element.innerHTML = "Product Name"; // Restore original content
+    });
+});
+</script>
+{% endblock main-content %}
