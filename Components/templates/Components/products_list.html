@@ -155,11 +155,12 @@ body{
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   position:relative;
   margin:20px auto;
-  border : 3px solid green;
+  
+
   
 }
 .wsk-cp-img{
-    border: 2px solid red;
+   
   position:absolute;
   top:5px;
   left:50%;
@@ -178,7 +179,7 @@ body{
   transition: all 0.2s ease-in-out;
   border-radius:12px;
   height: 20%;
-  border: 2px solid black;
+  border: 1px solid black;
 }
 .wsk-cp-product:hover .wsk-cp-img{
   top:-50px;
@@ -187,16 +188,16 @@ body{
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 .wsk-cp-text{
-  padding-top:145%;
-  border: 2px solid yellow;
+  padding-top:110%;
+  
 }
 .wsk-cp-text .category{
   text-align:center;
   font-size:20px;
   font-weight:bold;
   padding:5px;
-  margin-bottom:15px;
-  border: 2px solid blue;
+  margin-bottom:5px;
+  
   position:relative;
   transition: all 0.2s ease-in-out;
 }
@@ -213,7 +214,7 @@ body{
     
 }
 .wsk-cp-text .category .cart{
-    text-decoration:none;
+  
   padding: 12px 30px;
   border: 1px solid #313131;
   background:#212121;
@@ -236,19 +237,20 @@ body{
 }
 .title-product{
 
-    border: 2px solid orange;
+   
     text-align:center;
-    font-size:30px;
+    font-size:20px;
+    padding-top:20px;
     font-weight:bold;
     margin:5px auto;
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
   width:100%;
 }
 
 .detail{
     text-decoration:none;
+    font-size:20px;
     color:green;
 }
 
@@ -276,6 +278,31 @@ body{
   margin-top: 0px;
 }
 }
+@media screen and (max-width: 767px) {
+  .wsk-cp-product {
+    width: 100%; /* Adjust width for smaller screens */
+    margin: 10px auto; /* Adjust margin */
+  }
+
+  .wsk-cp-product .wsk-cp-img {
+    position: relative; /* Change position to relative */
+    top: 0; /* Reset top position */
+    left: 0; /* Reset left position */
+    transform: none; /* Reset transform */
+  }
+
+  .wsk-cp-product .wsk-cp-text {
+    padding-top: 0%; /* Adjust padding */
+  }
+
+  .wsk-cp-text .category {
+    font-size: 16px; /* Adjust font size */
+  }
+
+  .wsk-cp-text .title-product {
+    font-size: 18px; /* Adjust font size */
+  }
+}
 
 
 </style>
@@ -283,6 +310,7 @@ body{
 {% endblock style_container %}
 
 {% block main-content %}
+
 
 <div class="container_search">
     <input type="text" placeholder="Search...">
@@ -292,46 +320,38 @@ body{
 <div class="shell">
     <div class="container">
         <div class="row">
+          
+              {% for product in Products %}
+        
             <div class="col-md-3">
                 <div class="wsk-cp-product">
                     <div class="wsk-cp-img"> 
-                        <img src="https://3.bp.blogspot.com/-eDeTttUjHxI/WVSvmI-552I/AAAAAAAAAKw/0T3LN6jABKMyEkTRUUQMFxpe6PLvtcMMwCPcBGAYYCw/s1600/001-culture-clash-matthew-gianoulis.jpg" alt="Product" class="img-responsive" />
+              
+                        <img src="{{product.P_image.url}}" alt="Product" class="img-responsive" style="height: 250px;" />
+
                     </div>
                 
                     <div class="wsk-cp-text">
                         <div class="category">
-                            <a href="" class="cart" role="button">Add to Cart</a>
+ 
+                            <button hx-get="{% url 'add_to_cart' product.pk %}" class="cart" role="button">Add to Cart</button> 
+
+                           
+
+
+
                         </div>
                         <div class="title-product">
-                            
-                            <a href="" title="Click to Read more" id="name" class="detail" role="button">{{component.Type}}</a>
+                            Price:<span>&#8377;</span> {{product.Price}} <br>
+                            Quantity: {{product.Bundle_set}} per Set<br>
+                            <a href="" title="Click to Read more" id="name" class="detail" role="button">{{product.P_name}}</a>
                 
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="wsk-cp-product">
-                    <div class="wsk-cp-img"> 
-                        {% comment %} src="{{ component.image1.url }}" {% endcomment %}
-                        <img src="{{component.background_image.url}}" alt="Product" class="img-responsive" />
-                    </div>
-                
-                    <div class="wsk-cp-text">
-                        <div class="category">
-                            <a href="" class="cart" role="button">Add to Cart</a>
-                        </div>
-                        <div class="title-product">
-                            
-                            <a href="" title="Click to Read more" id="name" class="detail" role="button">Product Name</a>
-                
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+            {% endfor %}
 
 
 
@@ -339,22 +359,6 @@ body{
     </div>    
 </div>   
 
-<script>
- // Get all elements with the class name "detail"
-var elements = document.querySelectorAll(".detail");
 
-// Define the new content to be displayed on hover
-var newContent = "Read More";
 
-// Loop through each element and add event listeners for mouseenter and mouseleave
-elements.forEach(function(element) {
-    element.addEventListener("mouseenter", function() {
-        element.innerHTML = newContent;
-    });
-
-    element.addEventListener("mouseleave", function() {
-        element.innerHTML = "Product Name"; // Restore original content
-    });
-});
-</script>
 {% endblock main-content %}

@@ -2,6 +2,7 @@ from django.db import models
 from .managers import CustomUserManager
 from django.contrib.auth.models import AbstractBaseUser
 from django.core.validators import RegexValidator
+from Components.models import Product
 
 phone_regex = RegexValidator(regex=r'^\+?1?\d{10,11}$', message="Enter a valid Phone number. Don't Add +91 or 0")
 
@@ -39,3 +40,12 @@ class User(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    Quantity=models.PositiveIntegerField(default=1)
+    Pid=models.ForeignKey(Product,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'self.user'

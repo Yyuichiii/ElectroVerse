@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
-from .models import Component
+from .models import Component,Product
+
+
 
 
 def Components_view(request,Category,type):
@@ -14,9 +16,10 @@ def Components_view(request,Category,type):
 
 def Products_list_view(request, *args, **kwargs):
         type_value = request.GET.get('type')
-        print(type_value)
+        products=Product.objects.filter(Type=type_value)
+
         # component=Component.objects.get(Type=type_value)
-        return render(request,'Components/products_list.html')
+        return render(request,'Components/products_list.html',{'Products':products})
     # except:
     #     print('sdf')
     #     return render(request,'Components/products_list.html')

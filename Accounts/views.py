@@ -2,8 +2,9 @@ from django.shortcuts import render,redirect
 from .forms import LoginForm,UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
-
-
+from django.http import JsonResponse
+from .models import Cart
+from Components.models import Product
 # Create your views here.
 
 def home(request):
@@ -45,3 +46,23 @@ def logout_view(request):
     logout(request)
     messages.success(request, "Logout Successful !!!")
     return redirect('login')
+
+
+
+
+def add_to_cart(request, product_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({'message': 'Error'})
+
+    product=Product.objects.get(pk=product_id)
+
+    if not Cart.objects.filter(user=request.user ,Pid=product).exists():
+        cart=Cart.objects.create(user=request.user,Pid=product)
+        cart.save()
+
+    else:
+        cart=Cart.objects.get(user=request.user,Pid=product)
+        cart.Quantity=cart.Quantity+1
+        cart.save()
+    
+    return JsonResponse({'message': 'Added'})

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User
+from .models import User,Cart
 from .forms import UserChangeForm,UserCreationForm
 
 # Register your models here.
@@ -37,3 +37,11 @@ class UserAdmin(BaseUserAdmin):
 
 # Now register the new UserAdmin...
 admin.site.register(User, UserAdmin)
+
+
+
+
+class CartAdmin(admin.ModelAdmin):
+    list_display = ['user', 'Quantity', 'Pid']
+
+admin.site.register(Cart, CartAdmin)
