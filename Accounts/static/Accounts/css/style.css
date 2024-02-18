@@ -102,7 +102,7 @@ nav a:hover,
     right: 0;
     height: 100vh;
     width: 300px;
-    z-index: 999;
+    z-index: 1999;
     background-color: hsl(220, 24%, 12%);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
@@ -111,6 +111,7 @@ nav a:hover,
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    
 }
 
 .sidebar li {
@@ -156,4 +157,127 @@ nav a:hover,
     font-size:20px;
     text-align: center;
     
+}
+
+.cn{
+    color: red;
+    font-weight: bolder;
+    
+}
+
+
+/* notification css */
+
+
+.custom-toasts {
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+}
+    
+.custom-toast-notification {
+    width: 350px;
+    margin-bottom: .75rem;
+    background: #f8f8ff;
+    border-radius: 2px;
+    box-shadow: 1px 7px 14px -5px rgba(0,0,0,0.2);
+    overflow: hidden;
+    animation: customFadeOutAndHide 3s ease-in-out forwards; /* Apply hiding animation */
+   
+}
+
+@keyframes customFadeOutAndHide {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        visibility: hidden;
+
+        display: none;
+    }
+}
+
+.custom-toast-notification .custom-toast-content {
+    font-weight: 400;
+    color: #353b48;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0 1rem;
+}
+
+.custom-toast-notification .custom-toast-icon {
+    background-color: #27ae60;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.custom-toast-notification .custom-toast-icon i {
+    font-size: 1.25rem;
+}
+
+.custom-toast-notification .custom-toast-progress {
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.custom-toast-notification .custom-toast-progress-bar {
+    background-color: #b7b7b7;
+    height: 2px;
+    animation: customToastProgress 3s ease-in-out forwards;
+}
+
+.custom-slide-in-slide-out {
+    animation: customSlideInRight 0.3s ease-in-out forwards, customSlideOutRight 0.5s ease-in-out forwards 3s;
+    transform: translateX(110%);
+}
+
+.custom-slide-in-fade-out {
+    animation: customSlideInRight 0.3s ease-in-out forwards, customFadeOut 0.5s ease-in-out forwards 3s;
+    transform: translateX(110%);
+}
+
+.custom-wiggle-me {
+    animation: customWiggle 2s ease-in;
+}
+
+@keyframes customSlideInRight { 
+    0% { transform: translateX(110%); }
+    75% { transform: translateX(-10%); }
+    100% { transform: translateX(0%); }
+}
+
+@keyframes customSlideOutRight { 
+    0% { transform: translateX(0%); }
+    25% { transform: translateX(-10%); }
+    100% { transform: translateX(110%); }
+}
+  
+@keyframes customFadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes customToastProgress {
+    0% { width: 100%; }
+    100% { width: 0%; }
+}
+
+@keyframes customWiggle {
+    0%, 7% { transform: rotateZ(0); }
+    15% { transform: rotateZ(-13deg); }
+    20% { transform: rotateZ(9deg); }
+    25% { transform: rotateZ(-10deg); }
+    30% { transform: rotateZ(7deg); }
+    35% { transform: rotateZ(-2deg); }
+    40%, 100% { transform: rotateZ(0); }
 }

@@ -2,9 +2,10 @@ from django.shortcuts import render,redirect
 from .forms import LoginForm,UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from .models import Cart
 from Components.models import Product
+from django.db.models import Sum
 # Create your views here.
 
 def home(request):
@@ -52,7 +53,7 @@ def logout_view(request):
 
 def add_to_cart(request, product_id):
     if not request.user.is_authenticated:
-        return JsonResponse({'message': 'Error'})
+        return HttpResponse("Error")
 
     product=Product.objects.get(pk=product_id)
 
@@ -64,5 +65,7 @@ def add_to_cart(request, product_id):
         cart=Cart.objects.get(user=request.user,Pid=product)
         cart.Quantity=cart.Quantity+1
         cart.save()
-    
-    return JsonResponse({'message': 'Added'})
+    cartt = Cart.objects.filter(user=request.user).aggregate(total_quantity=Sum('Quantity'))
+    messages.success(request, "%s has been added to the cart" % product)
+    return render(request,"Accounts/partial/cart_update.html",{'cart':cartt['total_quantity'],'product':product_id})
+

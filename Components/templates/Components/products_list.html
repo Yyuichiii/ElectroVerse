@@ -227,6 +227,17 @@ body{
   
 }
 
+.success_cart{
+  padding: 12px 30px;
+  background:#00b359;
+  color:#000033;
+  width:50%;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  border-radius:27px;
+  transition: all 1s ease-in-out ;
+  cursor: not-allowed! important;
+}
+
 .wsk-cp-product:hover .wsk-cp-text .category .cart{
   border-color:#ddd;
   box-shadow: none;
@@ -334,7 +345,15 @@ body{
                     <div class="wsk-cp-text">
                         <div class="category">
  
-                            <button hx-get="{% url 'add_to_cart' product.pk %}" class="cart" role="button">Add to Cart</button> 
+                            <button 
+                              hx-get="{% url 'add_to_cart' product.pk %}" 
+                              hx-swap="innerHTML"
+                              hx-target='.cn' 
+                              class="cart" 
+                              id="cart_button{{product.pk}}"
+                              role="button">
+                              Add to Cart
+                            </button> 
 
                            
 
@@ -358,7 +377,5 @@ body{
         </div>        
     </div>    
 </div>   
-
-
 
 {% endblock main-content %}

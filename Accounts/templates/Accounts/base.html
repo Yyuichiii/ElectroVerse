@@ -15,6 +15,13 @@
 
      <!--HTMX-->
      <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+
+     <!--Jquery-->
+     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    
+     
+
 </head>
 {% block style_container %} {% endblock style_container %}
 <body>
@@ -191,7 +198,7 @@
                     
                 </div>
             </li>
-            <li class="hideOnMobile"><a href="">Cart</a></li>
+            <li class="hideOnMobile"><a href=""><img width="34" height="34" src="{% static 'Accounts/Images/cart_icon.png' %}"><sup class="cn">{{cart_no}}</sup></a></li>
             <!-- Menu Button to Show Sidebar on Mobile -->
             <li class="menu-button" onclick="showSidebar()"><a href="#"><i class="fa fa-bars"
                         style="font-size: 30px; color: white"></i></a></li>
@@ -201,7 +208,7 @@
                     
         </ul>
     </nav>
-
+    {% comment %} <section id="notification">
     {% if messages %}
     {% for message in messages %}
     <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
@@ -210,13 +217,51 @@
     </div>
     {% endfor %}
     {% endif %}
+</section>
+     {% endcomment %}
+
+
+     <!--Notifications-->
+
+     <section id="msg_notification">
+        <div class="custom-toasts">
+            <!-- Display Django messages as toast notifications -->
+            {% for message in messages %}
+                <div class="custom-toast-notification {% if message.tags %}custom-toast-{{ message.tags }}{% endif %} slide-in-slide-out">
+                    <div class="custom-toast-content">
+                        <div class="custom-toast-icon">
+                            <i class="fa-solid {% if message.tags == 'success' %}fa-check{% elif message.tags == 'error' %}fa-xmark{% elif message.tags == 'info' %}fa-info{% elif message.tags == 'warning' %}fa-triangle-exclamation{% endif %}"></i>
+                        </div>
+                        <div class="custom-toast-msg">{{ message }}</div>
+                    </div>
+                    <div class="custom-toast-progress">
+                        <div class="custom-toast-progress-bar"></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="custom-master-toast-notification custom-hide-toast">
+            <div class="custom-toast-content">
+                <div class="custom-toast-icon">
+                    <i class="fa-solid"></i>
+                </div>
+                <div class="custom-toast-msg"></div>
+            </div>
+            <div class="custom-toast-progress">
+                <div class="custom-toast-progress-bar"></div>
+            </div>
+        </div>
     
+     </section>
+     
+     
+
     {% block main-content %} {% endblock main-content %}
     
     <div class="footer">
         <h4>Footer</h4>
     </div>
-    <script>
+<script>
         // JavaScript functions for showing and hiding the sidebar
         function showSidebar() {
             const sidebar = document.querySelector('.sidebar');
@@ -227,7 +272,8 @@
             const sidebar = document.querySelector('.sidebar');
             sidebar.style.display = 'none';
         }
-    </script>
+
+</script>
 </body>
 
 </html>
