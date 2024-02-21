@@ -5,197 +5,30 @@
   {{component.heading}}
 {% endblock title %}
 
-{% block style_container %}
-  <style>
-    body {
-      font-family: "Arial", sans-serif;
-      line-height: 1.6;
-    }
-
-    {% comment %} .container {
-      position: relative;
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-      {% comment %} background-image: url('{{ component.background_image.url }}'); {% endcomment %}
-    
-
-    .container {
-      position: relative;
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-      {% comment %} position: relative;
-      width: 100%;
-      height: 400px; /* Adjust height as needed */ {% endcomment %}
-      overflow: hidden; /* Ensure child elements don't overflow */
-    }
-    
-    .container::before {
-    
-      content: "";
-      position: absolute;
-      background-repeat: no-repeat; /* Prevent background image from repeating */
-      background-size: cover;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('{{ component.background_image.url }}'); /* Replace with your background image path */
-      opacity: 0.3; /* Adjust opacity as needed */
-      z-index: -1; /* Ensure the pseudo-element is behind other content */
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    img {
-      width: 100%;
-      max-width: 500px;
-      height: auto;
-      display: block;
-      margin-bottom: 20px;
-    }
-
-    .button-49 {
-      width: 250px;
-      height: 76px;
-      line-height: 78px;
-      font-size: 20px;
-      padding-left:30px;
-      font-family: "Bebas Neue", sans-serif;
-      background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
-      border: 0;
-      color: #fff;
-      letter-spacing: 4px;
-      box-shadow: 6px 0px 0px #00e6f6;
-      outline: transparent;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-      text-decoration: none; /* Remove underline */
-    }
-    .button-49:after {
-      --slice-0: inset(50% 50% 50% 50%);
-      --slice-1: inset(80% -6px 0 0);
-      --slice-2: inset(50% -6px 30% 0);
-      --slice-3: inset(10% -6px 85% 0);
-      --slice-4: inset(40% -6px 43% 0);
-      --slice-5: inset(80% -6px 5% 0);
-      
-      content: 'ElectroVerse';
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);
-      text-shadow: -3px -3px 0px #F8F005, 3px 3px 0px #00E6F6;
-      clip-path: var(--slice-0);
-    }
-
-    .button-49:hover:after {
-      animation: 1s glitch;
-      animation-timing-function: steps(2, end);
-    } 
-
-    @keyframes glitch {
-      0% {
-        clip-path: var(--slice-1);
-        transform: translate(-20px, -10px);
-      }
-      10% {
-        clip-path: var(--slice-3);
-        transform: translate(10px, 10px);
-      }
-      20% {
-        clip-path: var(--slice-1);
-        transform: translate(-10px, 10px);
-      }
-      30% {
-        clip-path: var(--slice-3);
-        transform: translate(0px, 5px);
-      }
-      40% {
-        clip-path: var(--slice-2);
-        transform: translate(-5px, 0px);
-      }
-      50% {
-        clip-path: var(--slice-3);
-        transform: translate(5px, 0px);
-      }
-      60% {
-        clip-path: var(--slice-4);
-        transform: translate(5px, 10px);
-      }
-      70% {
-        clip-path: var(--slice-2);
-        transform: translate(-10px, 10px);
-      }
-      80% {
-        clip-path: var(--slice-5);
-        transform: translate(20px, -10px);
-      }
-      90% {
-        clip-path: var(--slice-1);
-        transform: translate(-10px, 0px);
-      }
-      100% {
-        clip-path: var(--slice-1);
-        transform: translate(0);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .button-49 {
-        height: 56px;
-        line-height: 58px;
-        bottom: 20px;
-      }
-    }
-  </style>
-{% endblock style_container %}
-
 {% block main-content %}
-<div class="container">
+<div class="Content">
   <h1>{{component.heading}}</h1>
   <a href="{% url 'Products_list' %}?type={{ component.Type }}
   " class="button-49" role="button">Explore Products</a>
   {{component.content1|safe}}
   {% if component.image1 %}
-    <img src="{{ component.image1.url }}" alt="image1" />
+    <img class="CImages" src="{{ component.image1.url }}" alt="image1" />
   {% endif %}
   {{component.content2|safe}}
   {% if component.image2 %}
-    <img src="{{ component.image2.url }}" alt="image2" />
+    <img class="CImages" src="{{ component.image2.url }}" alt="image2" />
   {% endif %}
   {{component.content3|safe}}
   {% if component.image3 %}
-    <img src="{{ component.image3.url }}" alt="image3" />
+    <img class="CImages" src="{{ component.image3.url }}" alt="image3" />
   {% endif %}
   {{component.content4|safe}}
   {% if component.image4 %}
-    <img src="{{ component.image4.url }}" alt="image4" />
+    <img class="CImages" src="{{ component.image4.url }}" alt="image4" />
   {% endif %}
   {{component.content5|safe}}
   {% if component.image5 %}
-    <img src="{{ component.image5.url }}" alt="image5" />
+    <img class="CImages" src="{{ component.image5.url }}" alt="image5" />
   {% endif %}
 </div>
 
@@ -207,8 +40,6 @@
     });
   });
 
-  
 
-// Change the content of the anchor tag
 </script>
 {% endblock main-content %}

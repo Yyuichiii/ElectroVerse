@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Accounts',
-    'Components'
+    'Components',
+    'fontawesomefree'
 ]
 
 AUTH_USER_MODEL = "Accounts.User"

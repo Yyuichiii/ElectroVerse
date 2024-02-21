@@ -49,11 +49,11 @@ def logout_view(request):
     return redirect('login')
 
 
-
-
+# Django View for handling Ajax request
 def add_to_cart(request, product_id):
     if not request.user.is_authenticated:
-        return HttpResponse("Error")
+        messages.error(request, "Login Required")
+        return render(request,"Accounts/partial/cart_not_login.html")
 
     product=Product.objects.get(pk=product_id)
 

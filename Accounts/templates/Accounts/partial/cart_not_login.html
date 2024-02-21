@@ -1,18 +1,9 @@
 {% load static %}
+Add to Cart
+   
+ <!--Notifications-->
 
-{{cart}}
-
-
-<button  
-    class="success_cart" 
-    id="cart_button{{product}}"
-    hx-swap-oob="true"
-    role="button">
-    Added
-</button> 
-
-
-<section id="msg_notification" hx-swap-oob="true">
+ <section id="msg_notification" hx-swap-oob="true">
     <div class="custom-toasts">
         <!-- Display Django messages as toast notifications -->
         {% for message in messages %}
@@ -48,3 +39,4 @@
     </div>
 
  </section>
+ 

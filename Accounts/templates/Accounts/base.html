@@ -7,11 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>ElectroVerse | {% block title %} {% endblock title %} </title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{% static 'Accounts/css/style.css' %}">
+
+    <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-     <!--Custom CSS-->
-     <link rel="stylesheet" href="{% static 'Accounts/css/style.css' %}">
+     
+ 
 
      <!--HTMX-->
      <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
@@ -25,201 +29,151 @@
 </head>
 {% block style_container %} {% endblock style_container %}
 <body>
-    <nav>
-        <!-- Sidebar Navigation -->
-        <ul class="sidebar">
-            <li><a href="#"><i class="fa fa-close" style="font-size: 40px; color: white"
-                        onclick="hideSidebar()"></i></a></li>
-            <!-- Dropdown for Passive Components -->
-            <li class="dropdown">
-                <button class="dropbtn" style="font-size:25px;margin-top:2px;">Passive <i
-                        class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="{% url 'Components' Category='Passive' type='Resistor' %}">Resistors</a>
-                    <a href="{% url 'Components' Category='Passive' type='Capacitor' %}">Capacitors</a>
-                    <a href="{% url 'Components' Category='Passive' type='Transformer' %}">Transformers</a>
-                    <a href="{% url 'Components' Category='Passive' type='Inductor' %}">Inductors</a>
-                
-                </div>
-            </li>
-            <!-- Dropdown for Active Components -->
-            <li class="dropdown">
-                <button class="dropbtn" style="font-size:25px;margin-top:2px;">Active <i
-                        class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="{% url 'Components' Category='Active' type='Transistor' %}">Transistors</a>
-                    <a href="{% url 'Components' Category='Active' type='IC' %}">Integrated Circuits</a>
-                    <a href="{% url 'Components' Category='Active' type='Thyristor' %}">Thyristor</a>
-                    <a href="{% url 'Components' Category='Active' type='Diode' %}">Diodes</a>
-                    <a href="{% url 'Components' Category='Active' type='Amplifier' %}">Amplifiers</a>
-                </div>
-            </li>
-            <!-- Dropdown for Electromechanical Components -->
-            <li class="dropdown">
-                <button class="dropbtn" style="font-size:24.4px;margin-top:2px;">ElectroMechanical <i
-                        class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="{% url 'Components' Category='ElectroMechanical' type='Relay' %}">Relays</a>
-                    <a href="{% url 'Components' Category='ElectroMechanical' type='Switch' %}">Switches</a>
-                    <a href="{% url 'Components' Category='ElectroMechanical' type='Motor' %}">Motors</a>
-                    <a href="{% url 'Components' Category='ElectroMechanical' type='Solenoid' %}">Solenoids</a>
-                    <a href="{% url 'Components' Category='ElectroMechanical' type='Actuator' %}">Actuators</a>
-                </div>
-            </li>
-            <!-- Dropdown for Displays -->
-            <li class="dropdown">
-                <button class="dropbtn" style="font-size:25px;margin-top:2px;">Displays <i
-                        class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="{% url 'Components' Category='Display' type='LCD' %}">LCD Display</a>
-                    <a href="{% url 'Components' Category='Display' type='LED' %}">LED</a>
-                    <a href="{% url 'Components' Category='Display' type='OLED' %}">OLED</a>
-                    <a href="{% url 'Components' Category='Display' type='TFT' %}">TFT</a>
-                    <a href="{% url 'Components' Category='Display' type='TouchScreen' %}">TouchScreen</a>
-                </div>
-            </li>
-            <!-- Dropdown for Sensors -->
-            <li class="dropdown">
-                <button class="dropbtn" style="font-size:25px;">Sensors <i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="{% url 'Components' Category='Sensor' type='Temperature' %}">Temperature Sensor</a>
-                    <a href="{% url 'Components' Category='Sensor' type='Pressure' %}">Pressure Sensor</a>
-                    <a href="{% url 'Components' Category='Sensor' type='Motion' %}">Motion Sensor</a>
-                    <a href="{% url 'Components' Category='Sensor' type='Light' %}">Light Sensor</a>
-                    <a href="{% url 'Components' Category='Sensor' type='Gas' %}">Gas Sensor</a>
-                </div>
-            </li>
-            {% if not request.user.is_authenticated %}
-            <!-- Login Button -->
-            <li class="dropdown">
-                <button class="dropbtn" style="font-size:25px;margin-top:2px;" onclick="window.location.href='{% url "login" %}'">Login</button>
-            </li>
-            <!-- Register Button -->
-            <li class="dropdown">
-                <button class="dropbtn" style="font-size:25px;margin-top:2px;" onclick="window.location.href='{% url "registration" %}'">Register</button>
-            </li>
-            {% endif %}
 
-            {% if request.user.is_authenticated %}
-            <li class="dropdown">
-                <button class="dropbtn" style="font-size:25px;">{{user.name}} <i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="#">Profile</a>
-                    <a href="#">Orders</a>
-                    <a href="#">Change Password</a>
-                    <a href="{% url "logout" %}">Logout</a> 
-                </div>
-            </li>
-            <li class="dropdown">
-                <button class="dropbtn" style="font-size:25px;margin-top:2px;" onclick="window.location.href=''">Cart</button>
-            </li>
-            {% endif %}
-
-        </ul>
-
-        <!-- Main Navigation -->
-        <ul class="main-menu">
-            <li><a href="{% url "home" %}" class="c_home">ElectroVerse</a></li>
-            <!-- Dropdowns for Main Navigation (Hidden on Mobile) -->
-            <li class="hideOnMobile dropdown">
-                <button class="dropbtn">Passive <i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
+     <!-- Main Navigation -->
+    <nav>       
+       
+        <!-- Hamburger Menu Button to Show Sidebar on Mobile -->
+        <div class="menu-button" onclick="toggleMenu()"><i class="fa fa-bars" style="font-size:24px"></i></div>
+            <ul class="main-menu">                     
+            
+                <!-- Home -->
+                <li class="h_element home">
+                    <a href="{% url 'home' %}" 
+                    class="c_home">
+                    ElectroVerse
+                    </a>
+                </li>
+       
+                <!-- Passive -->
+                <li class="h_element dropdown">
+                    <button class="dropbtn">
+                    Passive
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    
                     <div class="dropdown-content">
-                        <a href="{% url 'Components' Category='Passive' type='Resistor' %}">Resistors</a>
-                        <a href="{% url 'Components' Category='Passive' type='Capacitor' %}">Capacitors</a>
-                        <a href="{% url 'Components' Category='Passive' type='Transformer' %}">Transformers</a>
-                        <a href="{% url 'Components' Category='Passive' type='Inductor' %}">Inductors</a>
-                </div>
-            </li>
-            <li class="hideOnMobile dropdown">
-                <button class="dropbtn">Active <i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="{% url 'Components' Category='Active' type='Transistor' %}">Transistors</a>
-                    <a href="{% url 'Components' Category='Active' type='IC' %}">Integrated Circuits</a>
-                    <a href="{% url 'Components' Category='Active' type='Thyristor' %}">Thyristor</a>
-                    <a href="{% url 'Components' Category='Active' type='Diode' %}">Diodes</a>
-                    <a href="{% url 'Components' Category='Active' type='Amplifier' %}">Amplifiers</a>
-                </div>
-            </li>
-            <li class="hideOnMobile dropdown">
-                <button class="dropbtn">ElectroMechanical <i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="{% url 'Components' Category='ElectroMechanical' type='Relay' %}">Relays</a>
-                    <a href="{% url 'Components' Category='ElectroMechanical' type='Switch' %}">Switches</a>
-                    <a href="{% url 'Components' Category='ElectroMechanical' type='Motor' %}">Motors</a>
-                    <a href="{% url 'Components' Category='ElectroMechanical' type='Solenoid' %}">Solenoids</a>
-                    <a href="{% url 'Components' Category='ElectroMechanical' type='Actuator' %}">Actuators</a>
-                </div>
-            </li>
-            <li class="hideOnMobile dropdown">
-                <button class="dropbtn">Displays <i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="{% url 'Components' Category='Display' type='LCD' %}">LCD Display</a>
-                    <a href="{% url 'Components' Category='Display' type='LED' %}">LED</a>
-                    <a href="{% url 'Components' Category='Display' type='OLED' %}">OLED</a>
-                    <a href="{% url 'Components' Category='Display' type='TFT' %}">TFT</a>
-                    <a href="{% url 'Components' Category='Display' type='TouchScreen' %}">TouchScreen</a>
-                </div>
-            </li>
-            <li class="hideOnMobile dropdown">
-                <button class="dropbtn">Sensors <i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="{% url 'Components' Category='Sensor' type='Temperature' %}">Temperature Sensor</a>
-                    <a href="{% url 'Components' Category='Sensor' type='Pressure' %}">Pressure Sensor</a>
-                    <a href="{% url 'Components' Category='Sensor' type='Motion' %}">Motion Sensor</a>
-                    <a href="{% url 'Components' Category='Sensor' type='Light' %}">Light Sensor</a>
-                    <a href="{% url 'Components' Category='Sensor' type='Gas' %}">Gas Sensor</a>
-                </div>
-            </li>
-            {% if not request.user.is_authenticated %}
-            
-            <!-- Login and Register Buttons (Hidden on Mobile) -->
-            
-            <li class="hideOnMobile"><a href="{% url "login" %}">Login</a></li>
-            <li class="hideOnMobile"><a href="{% url "registration" %}">Register</a></li>
-            <!-- Menu Button to Show Sidebar on Mobile -->
-            <li class="menu-button" onclick="showSidebar()"><a href="#"><i class="fa fa-bars"
-                        style="font-size: 30px; color: white"></i></a></li>
-            
-                        
-            {% endif %}
+                        <a href="{% url 'Components' Category='Passive' type='Resistor' %}">
+                        Resistors</a>
+                        <a href="{% url 'Components' Category='Passive' type='Capacitor' %}">
+                        Capacitors</a>
+                        <a href="{% url 'Components' Category='Passive' type='Transformer' %}">
+                        Transformers</a>
+                        <a href="{% url 'Components' Category='Passive' type='Inductor' %}">
+                        Inductors</a>
+                    </div>
+                </li>
 
+                <!-- Active  -->
+                <li class="h_element dropdown">
+                    <button class="dropbtn">Active
+                        <i class="fa fa-caret-down"></i>
+                    </button>
 
-            {% if request.user.is_authenticated %}
-            
-            <!-- Login and Register Buttons (Hidden on Mobile) -->
-            <li class="hideOnMobile dropdown">
-                <button class="dropbtn">{{user.name}} <i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="#">Profile</a>
-                    <a href="#">Orders</a>
-                    <a href="#">Change Password</a>
-                    <a href="{% url "logout" %}">Logout</a> 
-                    
-                </div>
-            </li>
-            <li class="hideOnMobile"><a href=""><img width="34" height="34" src="{% static 'Accounts/Images/cart_icon.png' %}"><sup class="cn">{{cart_no}}</sup></a></li>
-            <!-- Menu Button to Show Sidebar on Mobile -->
-            <li class="menu-button" onclick="showSidebar()"><a href="#"><i class="fa fa-bars"
-                        style="font-size: 30px; color: white"></i></a></li>
-            
-                        
-            {% endif %}
-                    
-        </ul>
+                    <div class="dropdown-content">
+                        <a href="{% url 'Components' Category='Active' type='Transistor' %}">
+                        Transistors</a>
+                        <a href="{% url 'Components' Category='Active' type='IC' %}">
+                        Integrated Circuits</a>
+                        <a href="{% url 'Components' Category='Active' type='Thyristor' %}">
+                        Thyristor</a>
+                        <a href="{% url 'Components' Category='Active' type='Diode' %}">
+                        Diodes</a>
+                        <a href="{% url 'Components' Category='Active' type='Amplifier' %}">
+                        Amplifiers</a>
+                    </div>
+                </li>
+
+                <!-- ElectroMechanical -->
+                <li class="h_element dropdown">
+                    <button class="dropbtn">
+                    ElectroMechanical <i class="fa fa-caret-down"></i>
+                    </button>
+
+                    <div class="dropdown-content">
+                        <a href="{% url 'Components' Category='ElectroMechanical' type='Relay' %}">
+                        Relays</a>
+                        <a href="{% url 'Components' Category='ElectroMechanical' type='Switch' %}">
+                        Switches</a>
+                        <a href="{% url 'Components' Category='ElectroMechanical' type='Motor' %}">
+                        Motors</a>
+                        <a href="{% url 'Components' Category='ElectroMechanical' type='Solenoid' %}">
+                        Solenoids</a>
+                        <a href="{% url 'Components' Category='ElectroMechanical' type='Actuator' %}">
+                        Actuators</a>
+                    </div>
+                </li>
+
+                <!-- Displays -->
+                <li class="h_element dropdown">
+                    <button class="dropbtn">
+                        Displays <i class="fa fa-caret-down"></i>
+                    </button>
+
+                    <div class="dropdown-content">
+                        <a href="{% url 'Components' Category='Display' type='LCD' %}">LCD Display</a>
+                        <a href="{% url 'Components' Category='Display' type='LED' %}">LED</a>
+                        <a href="{% url 'Components' Category='Display' type='OLED' %}">OLED</a>
+                        <a href="{% url 'Components' Category='Display' type='TFT' %}">TFT</a>
+                        <a href="{% url 'Components' Category='Display' type='TouchScreen' %}">
+                        TouchScreen</a>
+                    </div>
+                </li>
+
+                <!-- Sensors --> 
+                <li class="h_element dropdown">
+                    <button class="dropbtn">
+                        Sensors <i class="fa fa-caret-down"></i>
+                    </button>
+
+                    <div class="dropdown-content">
+                        <a href="{% url 'Components' Category='Sensor' type='Temperature' %}">
+                        Temperature Sensor</a>
+                        <a href="{% url 'Components' Category='Sensor' type='Pressure' %}">
+                        Pressure Sensor</a>
+                        <a href="{% url 'Components' Category='Sensor' type='Motion' %}">
+                        Motion Sensor</a>
+                        <a href="{% url 'Components' Category='Sensor' type='Light' %}">
+                        Light Sensor</a>
+                        <a href="{% url 'Components' Category='Sensor' type='Gas' %}">
+                        Gas Sensor</a>
+                    </div>
+                </li>
+                {% if request.user.is_authenticated %}
+                <!-- User Details -->
+                <li class="h_element dropdown">
+                    <button class="dropbtn">
+                        {{user.name}}<i class="fa fa-caret-down"></i>
+                    </button>
+
+                    <div class="dropdown-content">
+                        <a href="#">Profile</a>
+                        <a href="#">Orders</a>
+                        <a href="#">Change Password</a>
+                        <a href="{% url 'logout' %}">Logout</a>                         
+                    </div>
+                </li>
+
+                <!-- Cart -->
+                <li class="h_element">
+                    <a href="">
+                        <img width="34" height="34" 
+                        src="{% static 'Accounts/Images/cart_icon.png' %}">
+                        <sup class="cn">
+                            {{cart_no}}
+                        </sup>
+                    </a>
+                </li>
+                {% else %}
+                <!-- Login -->
+                <li class="h_element"><a href="{% url 'login' %}">Login</a></li>
+
+                <!-- Register -->
+                <li class="h_element"><a href="{% url 'registration' %}">Register</a></li>
+                       
+                {% endif %}
+            </ul>
     </nav>
-    {% comment %} <section id="notification">
-    {% if messages %}
-    {% for message in messages %}
-    <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-        {{ message }}
-        
-    </div>
-    {% endfor %}
-    {% endif %}
-</section>
-     {% endcomment %}
-
 
      <!--Notifications-->
 
@@ -230,7 +184,13 @@
                 <div class="custom-toast-notification {% if message.tags %}custom-toast-{{ message.tags }}{% endif %} slide-in-slide-out">
                     <div class="custom-toast-content">
                         <div class="custom-toast-icon">
-                            <i class="fa-solid {% if message.tags == 'success' %}fa-check{% elif message.tags == 'error' %}fa-xmark{% elif message.tags == 'info' %}fa-info{% elif message.tags == 'warning' %}fa-triangle-exclamation{% endif %}"></i>
+                            {% if message.tags == 'success' %}
+                            <i class="fa fa-check"></i>
+                            {% else %}
+                            <img width="34" height="34" 
+                            src="{% static 'Accounts/Images/close.png' %}">
+                            {% endif %}
+                            
                         </div>
                         <div class="custom-toast-msg">{{ message }}</div>
                     </div>
@@ -243,7 +203,7 @@
         <div class="custom-master-toast-notification custom-hide-toast">
             <div class="custom-toast-content">
                 <div class="custom-toast-icon">
-                    <i class="fa-solid"></i>
+                    
                 </div>
                 <div class="custom-toast-msg"></div>
             </div>
@@ -261,19 +221,26 @@
     <div class="footer">
         <h4>Footer</h4>
     </div>
-<script>
-        // JavaScript functions for showing and hiding the sidebar
-        function showSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.style.display = 'flex';
-        }
 
-        function hideSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.style.display = 'none';
+    
+<script>
+
+    // Navbar JS
+    function toggleMenu() {
+        var elements = document.getElementsByClassName("main-menu");
+        var icon = document.querySelector(".menu-button i.fa");
+        for (var i = 0; i < elements.length; i++) {
+            if (elements[i].style.display === 'none' || elements[i].style.display === '') {
+                elements[i].style.display = 'flex';
+                icon.classList.remove("fa-bars"); // Remove the bars class
+                icon.classList.add("fa-times"); // Add the times class
+            } else {
+                elements[i].style.display = 'none';
+                icon.className = 'fa fa-bars'; // Change the icon to bars icon
+            }
         }
+    }
 
 </script>
 </body>
-
 </html>
