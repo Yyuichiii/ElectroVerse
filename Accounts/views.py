@@ -49,6 +49,12 @@ def logout_view(request):
     return redirect('login')
 
 
+def cart_view(request):
+    products=Cart.objects.filter(user=request.user)
+    return render(request,"Accounts/cart.html",{'products': products})
+
+
+
 # Django View for handling Ajax request
 def add_to_cart(request, product_id):
     if not request.user.is_authenticated:

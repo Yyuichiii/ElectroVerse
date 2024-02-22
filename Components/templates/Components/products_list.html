@@ -67,7 +67,7 @@ body {
                         <div class="title-product">
                             Price:<span>&#8377;</span> {{product.Price}} <br>
                             Quantity: {{product.Bundle_set}} per Set<br>
-                            <a href="" title="Click to Read more" id="name" class="detail" role="button">{{product.P_name}}</a>
+                            <a href="{% url 'Products_Content' product.pk %}" title="Click to Read more" id="name" class="detail" role="button">{{product.P_name}}</a>
                 
                         </div>
                     </div>

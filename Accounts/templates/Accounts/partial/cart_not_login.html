@@ -18,7 +18,13 @@ Add to Cart
                         {% endif %}
                         
                     </div>
-                    <div class="custom-toast-msg">{{ message }}</div>
+                    <div class="custom-toast-msg">
+                        <a href="{% url 'login' %}" style="color: blue; text-decoration: underline;">Click here to Login</a><br>
+
+                        <span style="color: red; font-weight: normal; font-size: 16px;">* Login is required *</span><br>
+
+
+                    </div>
                 </div>
                 <div class="custom-toast-progress">
                     <div class="custom-toast-progress-bar"></div>
