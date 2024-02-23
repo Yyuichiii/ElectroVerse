@@ -1,0 +1,45 @@
+{% extends 'Accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+  {{component.heading}}
+{% endblock title %}
+
+{% block main-content %}
+<div class="Content">
+  <h1>{{component.heading}}</h1>
+  <a href="{% url 'Products_list' %}?type={{ component.Type }}
+  " class="button-49" role="button">Explore Products</a>
+  {{component.content1|safe}}
+  {% if component.image1 %}
+    <img class="CImages" src="{{ component.image1.url }}" alt="image1" />
+  {% endif %}
+  {{component.content2|safe}}
+  {% if component.image2 %}
+    <img class="CImages" src="{{ component.image2.url }}" alt="image2" />
+  {% endif %}
+  {{component.content3|safe}}
+  {% if component.image3 %}
+    <img class="CImages" src="{{ component.image3.url }}" alt="image3" />
+  {% endif %}
+  {{component.content4|safe}}
+  {% if component.image4 %}
+    <img class="CImages" src="{{ component.image4.url }}" alt="image4" />
+  {% endif %}
+  {{component.content5|safe}}
+  {% if component.image5 %}
+    <img class="CImages" src="{{ component.image5.url }}" alt="image5" />
+  {% endif %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var images = document.querySelectorAll("img[loading='lazy']");
+    images.forEach(function (img) {
+      img.setAttribute("loading", "lazy");
+    });
+  });
+
+
+</script>
+{% endblock main-content %}

@@ -1,0 +1,56 @@
+{% extends 'Accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+  
+{% endblock title %}
+
+
+{% block main-content %}
+<div class="Content">
+    <h1>{{Product.heading}}</h1>
+
+    {% if request.user.is_authenticated %}
+    <a hx-get="{% url 'add_to_cart' Product.pk %}"
+    hx-target='.cn' id="glitch_button"
+    class="button-49" role="button">Add to Cart</a>
+
+    {% else %}
+    <a hx-get="{% url 'add_to_cart' Product.pk %}"
+    class="button-49" role="button">Add to Cart</a>
+
+    {% endif %}
+    
+    {{Product.content1|safe}}
+  {% if Product.image1 %}
+    <img class="CImages" src="{{ Product.image1.url }}" alt="image1" />
+  {% endif %}
+  {{Product.content2|safe}}
+  {% if Product.image2 %}
+    <img class="CImages" src="{{ Product.image2.url }}" alt="image2" />
+  {% endif %}
+  {{Product.content3|safe}}
+  {% if Product.image3 %}
+    <img class="CImages" src="{{ Product.image3.url }}" alt="image3" />
+  {% endif %}
+  {{Product.content4|safe}}
+  {% if Product.image4 %}
+    <img class="CImages" src="{{ Product.image4.url }}" alt="image4" />
+  {% endif %}
+  {{Product.content5|safe}}
+  {% if Product.image5 %}
+    <img class="CImages" src="{{ Product.image5.url }}" alt="image5" />
+  {% endif %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var images = document.querySelectorAll("img[loading='lazy']");
+    images.forEach(function (img) {
+      img.setAttribute("loading", "lazy");
+    });
+  });
+
+
+</script>
+{% endblock main-content %}

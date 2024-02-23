@@ -1,0 +1,85 @@
+{% extends 'Accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+Products
+{% endblock title %}
+
+{% block style_container %}
+<style>
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+
+body {
+  background: #4d4d4d;
+}
+
+</style>
+
+{% endblock style_container %}
+
+{% block main-content %}
+
+
+{% comment %} <div class="container_search">
+    <input type="text" placeholder="Search...">
+    <div class="search"></div>
+  </div> {% endcomment %}
+
+<div class="shell">
+    <div class="container">
+        <div class="row">
+          
+              {% for product in Products %}
+        
+            <div class="col-md-3">
+                <div class="wsk-cp-product">
+                    <div class="wsk-cp-img"> 
+              
+                        <img src="{{product.P_image.url}}" alt="Product" class="img-responsive" style="height: 250px;" />
+
+                    </div>
+                
+                    <div class="wsk-cp-text">
+                        <div class="category">
+                            {% if request.user.is_authenticated %}
+                            <button 
+                              hx-get="{% url 'add_to_cart' product.pk %}" 
+                              hx-swap="innerHTML"
+                              hx-target='.cn' 
+                              class="cart" 
+                              id="cart_button{{product.pk}}"
+                              role="button">
+                              Add to Cart
+                            </button> 
+
+                            {% else %}
+                            <button
+                            hx-get="{% url 'add_to_cart' product.pk %}"  
+                            class="cart"
+                            role="button">
+                            Add to Cart    
+                            </button> 
+                           
+
+                            {% endif %}
+
+                        </div>
+                        <div class="title-product">
+                            Price:<span>&#8377;</span> {{product.Price}} <br>
+                            Quantity: {{product.Bundle_set}} per Set<br>
+                            <a href="{% url 'Products_Content' product.pk %}" title="Click to Read more" id="name" class="detail" role="button">{{product.P_name}}</a>
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+
+
+        </div>        
+    </div>    
+</div>   
+
+{% endblock main-content %}
