@@ -140,9 +140,13 @@ def custom_upload_content_image(instance, filename):
 
 
 SUMMERNOTE_CONFIG = {
+    
     'height': '480',
     'attachment_upload_to': custom_upload_content_image,
+    
+    
     'popover': {
+
             'image': [
                 ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
                 ['float', ['floatLeft', 'floatRight', 'floatNone']],
@@ -161,7 +165,25 @@ SUMMERNOTE_CONFIG = {
                 ['fontname', ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New']],  # Font names
                 ['para', ['ul', 'paragraph']],
                 ['table', ['table']],
-                ['insert', ['link', 'picture']]
+                ['insert', ['link', 'picture']],
+                
             ]
-        }
+        },
+    
+    'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['font_edit', ['strikethrough', 'superscript', 'subscript']],
+            
+            ['fontname', ['fontname','fontsize',]],
+            ['color', ['forecolor','backcolor']],
+            ['para', ['ul', 'ol', 'paragraph','height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+            ['edit', ['undo','redo']],
+            
+        ],
+
+    
 }

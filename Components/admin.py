@@ -23,6 +23,7 @@ class ProductAdmin(SummernoteModelAdmin):
     fieldsets = [
         ('Main Information (Important)', {'fields': ['Type','P_name', 'Bundle_set', 'Price','P_image']}),
         ('Paragraphs and Images', {'fields': ['background_image','content',]}),
-    ]   
+    ]
+  
 
 admin.site.register(Product, ProductAdmin) 
