@@ -37,22 +37,13 @@ class Product(models.Model):
 
 
     Type=models.CharField(max_length=20, choices=TYPE_CHOICES,null=True)
-    P_name = models.CharField(max_length=50, verbose_name="Product Name")
+    P_name = models.CharField(max_length=200, verbose_name="Product Name")
     Bundle_set = models.PositiveIntegerField(default=1)  
     Price = models.DecimalField(max_digits=10, decimal_places=2)  
-    heading = models.CharField(max_length=100)
     P_image = models.ImageField(upload_to=upload_path_products, blank=True)
-    content1 = models.TextField(blank=True)
-    content2 = models.TextField(blank=True)
-    content3 = models.TextField(blank=True)
-    content4 = models.TextField(blank=True)
-    content5 = models.TextField(blank=True)
+    content = models.TextField(blank=True)
     background_image = models.ImageField(upload_to=upload_path_products, blank=True)
-    image1 = models.ImageField(upload_to=upload_path_products, blank=True)
-    image2 = models.ImageField(upload_to=upload_path_products, blank=True)
-    image3 = models.ImageField(upload_to=upload_path_products, blank=True)
-    image4 = models.ImageField(upload_to=upload_path_products, blank=True)
-    image5 = models.ImageField(upload_to=upload_path_products, blank=True)
+    
     
     def __str__(self):
         return self.P_name

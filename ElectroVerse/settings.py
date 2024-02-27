@@ -27,11 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Accounts',
     'Components',
-    'fontawesomefree'
+    'fontawesomefree',
+    'django_summernote',
 ]
 
 AUTH_USER_MODEL = "Accounts.User"
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -100,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -124,3 +126,42 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'Components_Images')
+
+
+
+# Django SummerNote Settings
+def custom_upload_content_image(instance, filename):
+    
+    # Define the folder structure for storing attachments
+    folder_name = 'Product_Images/Content/'  
+    
+    return os.path.join(folder_name, filename)
+
+
+
+SUMMERNOTE_CONFIG = {
+    'height': '480',
+    'attachment_upload_to': custom_upload_content_image,
+    'popover': {
+            'image': [
+                ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+                ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                ['remove', ['removeMedia']]
+            ],
+            'link': [
+                ['link', ['linkDialogShow', 'unlink']]
+            ],
+            'table': [
+                ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+                ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+            ],
+            'air': [
+                ['color', ['color']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New']],  # Font names
+                ['para', ['ul', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture']]
+            ]
+        }
+}
