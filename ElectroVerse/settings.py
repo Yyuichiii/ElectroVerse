@@ -16,6 +16,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+LOGIN_URL = '/account/login/'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -187,3 +189,7 @@ SUMMERNOTE_CONFIG = {
 
     
 }
+
+
+
+
