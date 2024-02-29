@@ -1,13 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User,Cart
+from .models import User,Cart,Address
 from .forms import UserChangeForm,UserCreationForm
 
 # Register your models here.
 class UserAdmin(BaseUserAdmin):
-    # The forms to add and change user instances
-    form = UserChangeForm
-    add_form = UserCreationForm
+    # # The forms to add and change user instances
+    # form = UserChangeForm
+    # add_form = UserCreationForm
 
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
@@ -45,3 +45,10 @@ class CartAdmin(admin.ModelAdmin):
     list_display = ['user', 'Quantity', 'Pid']
 
 admin.site.register(Cart, CartAdmin)
+
+
+
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ['user', 'Name', 'Phone']
+
+admin.site.register(Address, AddressAdmin)

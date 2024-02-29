@@ -49,3 +49,16 @@ class Cart(models.Model):
 
     def __str__(self):
         return f'self.user'
+    
+
+class Address(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    Name=models.CharField(max_length=30,blank=False,null=False)
+    Phone=models.CharField(max_length=15,blank=False)
+    Pincode=models.CharField(max_length=6,blank=False)
+    State=models.CharField(max_length=20,blank=False)
+    Street_Address=models.CharField(max_length=50,blank=False,null=False)
+    Landmark=models.CharField(max_length=75,blank=True,null=False)
+
+    def __str__(self):
+        return f"{self.user}"

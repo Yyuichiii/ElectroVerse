@@ -26,12 +26,11 @@
      <!--Jquery-->
      <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-    
-     
+   
 
 </head>
 {% block style_container %} {% endblock style_container %}
-<body>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 
      <!-- Main Navigation -->
     <nav>       
@@ -150,9 +149,9 @@
                     </button>
 
                     <div class="dropdown-content">
-                        <a href="#">Profile</a>
+                        <a href="{% url 'Profile' %}">Profile</a>
                         <a href="#">Orders</a>
-                        <a href="#">Change Password</a>
+                        <a href="{% url 'Password_Change' %}">Change Password</a>
                         <a href="{% url 'logout' %}">Logout</a>                         
                     </div>
                 </li>
