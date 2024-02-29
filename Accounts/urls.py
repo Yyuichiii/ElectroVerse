@@ -8,6 +8,7 @@ urlpatterns = [
     path('Profile/', views.Profile_view,name='Profile'),
     path('Address/', views.address_list,name='Address'),
     path('cart/', views.cart_view,name='Cart'),
+    path('checkout/', views.checkout_view,name='Checkout'),
     path('remove_cart/<int:id>/', views.remove_cart,name='Remove_Cart'),
     
 ]
@@ -16,6 +17,7 @@ htmxpattern=[
     path('addcart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
     path('qupdt/<str:c>/<int:id>/', views.qupdt, name='quantity_update'),
     path('Address_edit/', views.Address_Edit_view.as_view(),name='Address_Edit'),
+    
 ]
 
 urlpatterns+=htmxpattern

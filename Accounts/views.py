@@ -105,6 +105,25 @@ def cart_view(request):
     return render(request,"Accounts/cart.html",{'products': products,'Price':tp['total_price']})
 
 
+def checkout_view(request):
+    products=Cart.objects.filter(user=request.user)
+    tp = products.aggregate(total_price=Sum(F('Pid__Price') * F('Quantity')))
+    address=Address.objects.filter(user=request.user).first()
+
+    if address is None:
+        address_dict=None
+    else:
+        address_dict = {
+    'Name': address.Name,
+    'Phone': address.Phone,
+    'Pincode': address.Pincode,
+    'State': address.State,
+    'Street Address': address.Street_Address,
+    'Landmark': address.Landmark,
+    }
+    return render(request,'Accounts/checkout.html',{'Price':tp['total_price'],'address':address_dict})
+
+
 # Django View for handling Ajax request
 def add_to_cart(request, product_id):
     
@@ -212,7 +231,4 @@ class Address_Edit_view(View):
         else:
             messages.error(request, "Address not set !!!")
             return render(request,'Accounts/address_display.html',{'form':fm})
-
-
-
 

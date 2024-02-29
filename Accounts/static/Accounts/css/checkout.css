@@ -1,0 +1,74 @@
+/* Custom CSS for sliding summary */
+.summary-panel {
+	position: fixed;
+	top: 0;
+	left: -500px;
+	width: 500px;
+	height: 100%;
+	background-color: #f8f9fa;
+	transition: left 0.5s ease-in-out;
+	z-index: 999;
+	padding: 20px;
+	overflow-y: auto; /* Enable scrolling if content exceeds panel height */
+}
+.show-summary {
+	left: 0 !important;
+}
+
+
+.product-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically */
+}
+
+.product-img {
+    width: 180px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 10px; /* Adjust margin to separate image from text */
+}
+
+.product-details {
+    flex-grow: 1; /* Allow the details to grow to fill available space */
+}
+
+.price,
+.quantity,
+.name {
+    margin-bottom: 5px; /* Add some margin to separate details */
+}
+
+
+.btn-summary {
+	display: flex;
+	justify-content: space-around;
+	font-family: "Amatic SC", cursive;
+  }
+
+
+.btn-place {
+	color: #fff;
+	text-decoration: none;
+	margin: 20px 0 0;
+	padding: 10px 0;
+	border-radius: 5px;
+	text-align: center;
+	display: block;
+	line-height: 25px;
+	box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+	transition: background-color 0.3s ease;
+	background: #478298;
+	width: 20%;
+	font-size: 2em;
+   
+  }
+  
+.btn-place:hover{
+	background-color: rgb(165, 255, 47);
+	color: black;
+  }
+  
