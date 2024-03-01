@@ -1,10 +1,11 @@
 from django import forms
-from .models import User
+from .models import User,Address
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate
-# from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import password_validation
 
 
 
@@ -48,11 +49,10 @@ class UserChangeForm(forms.ModelForm):
     disabled password hash display field.
     """
 
-    password = ReadOnlyPasswordHashField()
-
     class Meta:
         model = User
-        fields = ["email", "password", "name", "phone", "is_active", "is_admin"]
+        fields = ["name", "phone"]
+        widgets = {'name': forms.TextInput(attrs={'class': 'form-control','placeholder': 'Enter the Name',}),'phone': forms.TextInput(attrs={'class': 'form-control','placeholder': 'Enter the Phone Number',})}
 
 
 # login form
@@ -89,3 +89,84 @@ class LoginForm(forms.ModelForm):
             
         if self.user_cache is None:
             raise self.get_invalid_login_error()
+        
+
+
+#Password Change Form
+class Password_change_form(PasswordChangeForm):
+    new_password1 = forms.CharField(label=_("New password"),widget=forms.PasswordInput(attrs={"class": "form-control" ,"placeholder": "Enter your new password here"}),strip=False,help_text=password_validation.password_validators_help_text_html(),)
+    
+    new_password2 = forms.CharField(
+        label=_("Confirm New Password"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password","class": "form-control","placeholder": "Enter your new confirm password here"}),)
+
+    old_password = forms.CharField(label=_("Old Password"),strip=False,widget=forms.PasswordInput(attrs={"autocomplete": "current-password", "autofocus": True,"class": "form-control","placeholder": "Enter your old password here"}))
+
+
+# Address Form
+class Address_form(forms.ModelForm):
+    
+    class Meta:
+        model = Address
+        exclude = ('user',)
+
+        STATE_CHOICES = (
+                ('', 'Select the State'),
+                ('Andhra Pradesh', 'Andhra Pradesh'),
+                ('Arunachal Pradesh', 'Arunachal Pradesh'),
+                ('Assam', 'Assam'),
+                ('Bihar', 'Bihar'),
+                ('Chhattisgarh', 'Chhattisgarh'),
+                ('Goa', 'Goa'),
+                ('Gujrat', 'Gujrat'),
+                ('Haryana', 'Haryana'),
+                ('Himachal Pradesh', 'Himachal Pradesh'),
+                ('Jharkhand', 'Jharkhand'),
+                ('Karnataka', 'Karnataka'),
+                ('Kerela', 'Kerela'),
+                ('Madhya Pradesh', 'Madhya Pradesh'),
+                ('Maharastra', 'Maharastra'),
+                ('Manipur', 'Manipur'),
+                ('Meghalaya', 'Meghalaya'),
+                ('Mizoram', 'Mizoram'),
+                ('Nagaland', 'Nagaland'),
+                ('Odisha', 'Odisha'),
+                ('Punjab', 'Punjab'),
+                ('Rajasthan', 'Rajasthan'),
+                ('Sikkim', 'Sikkim'),
+                ('Tamil Nadu', 'Tamil Nadu'),
+                ('Telengana', 'Telengana'),
+                ('Tripura', 'Tripura'),
+                ('Uttarakhand', 'Uttarakhand'),
+                ('Uttar Pradesh', 'Uttar Pradesh'),
+                ('West Bengal', 'West Bengal'),
+                )
+
+        widgets = {
+            'Name': forms.TextInput(attrs={
+                'class': 'form-control',
+                "placeholder": "Enter your Name here"
+                }),
+            'Phone': forms.TextInput(attrs={
+                'class': 'form-control',
+                "placeholder": "Enter your Phone here"
+                }),
+            'Pincode': forms.TextInput(attrs={
+                'class': 'form-control',
+                "placeholder": "Enter your Pincode here"
+
+                }),
+            'State': forms.Select(choices=STATE_CHOICES,attrs={
+                'class': 'form-control',
+                "placeholder": "Select your State"
+                }),
+            'Street_Address': forms.TextInput(attrs={
+                'class': 'form-control',
+                "placeholder": "Enter your Street Address here",
+                
+                }),
+            'Landmark': forms.TextInput(attrs={
+                'class': 'form-control',
+                "placeholder": "Enter your Landmark here"
+                }),}

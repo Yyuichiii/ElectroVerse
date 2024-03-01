@@ -5,7 +5,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'),
     path('account/',include('Accounts.urls')),
-    path('components/',include('Components.urls'))
+    path('components/',include('Components.urls')),
+    path('summernote/', include('django_summernote.urls')),
 ]
 from django.conf.urls.static import static
 from django.conf import settings

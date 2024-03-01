@@ -1,0 +1,79 @@
+{% extends 'Accounts/base.html' %} 
+{% load static %} 
+{% block title %}Address{% endblock title %} 
+
+{% block style_container %} 
+<style>
+    .header {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .Form_Container {
+        margin-top: 20px;
+        padding: 20px;
+        max-width: 600px;
+        /* Set maximum width */
+        margin: 0 auto;
+        /* Center the form */
+    }
+
+</style>
+{% endblock style_container %}
+
+{% block main-content %}
+
+<div class="container">
+    <div class="container my-4">
+        <div class="row">
+         <h3>Welcome {{user.name}}</h3>
+         <div class="col-sm-3 border-end">
+          <ul class="list-unstyled">
+           <li class="d-grid"><a href="{% url 'Profile' %}" class="btn">Profile</a></li>
+           <li class="d-grid"><a href="{% url 'Address' %}" class="btn btn-primary">Address</a></li>
+          </ul>
+         </div>
+    <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded Form_Container" id="unique_address">
+        
+        {% if address is None %}
+        <h3 style="text-align: center;color: rgb(19, 18, 18);">No Address Found !!!</h3>
+
+        <div class="d-grid gap-2 col-3 mx-auto">
+            <button class="btn btn-primary" type="submit" hx-get="{% url 'Address_Edit' %}">Add</button>
+        </div>
+        {% else %}
+            
+        
+            
+        <h3 style="text-align: center;color: rgb(19, 18, 18);">Address Details</h3>
+        {% for key, value in address.items %} 
+            <div class="col-md-12">
+                <div class="form-floating mb-3">
+                    {{ key }} : {{value}}
+                </div>
+                
+            </div>
+
+                    
+        {% endfor %}
+
+        <div class="d-grid gap-2 col-3 mx-auto">
+            
+        
+            <button class="btn btn-primary me-2" type="submit" hx-get="{% url 'Address_Edit' %}">Edit</button>
+            
+        </div>
+        
+        
+        {% endif %}
+    
+    </div>
+</div>
+</div>
+</div><br>
+
+
+
+
+
+{% endblock main-content %} 

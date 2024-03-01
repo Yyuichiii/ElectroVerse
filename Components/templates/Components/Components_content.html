@@ -6,7 +6,11 @@
 {% endblock title %}
 
 {% block main-content %}
+
 <div class="Content">
+  <div class="BackgroundImage" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('{{ component.background_image.url }}'); opacity: 0.1;"></div>
+
+
   <h1>{{component.heading}}</h1>
   <a href="{% url 'Products_list' %}?type={{ component.Type }}
   " class="button-49" role="button">Explore Products</a>

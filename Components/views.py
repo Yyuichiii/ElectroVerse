@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Component,Product
+from django.shortcuts import get_object_or_404
 
 
 
@@ -24,9 +25,8 @@ def Products_list_view(request, *args, **kwargs):
     #     print('sdf')
     #     return render(request,'Components/products_list.html')
 
-from django.shortcuts import get_object_or_404
-def Products_Content_view(request,pk):
-     print(pk)
-     product = get_object_or_404(Product, pk=pk)
-     return render(request,'Components/products_content.html',{'Product':product})
+
+def Products_Content_view(request,pk):    
+    product = get_object_or_404(Product, pk=pk)
+    return render(request,'Components/products_content.html',{'Product':product})
      

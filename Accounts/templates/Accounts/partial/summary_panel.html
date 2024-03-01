@@ -1,0 +1,18 @@
+
+    {% for product in products %}
+    <div class="product-item">
+        <img src="{{product.Pid.P_image.url}}" alt="Product img" class="product-img">
+        <div class="product-details">
+            <div class="name">Name:  {{product.Pid.P_name}}</div>
+            <div class="price">Price: &#8377;{{product.Price}}</div>
+            <div class="quantity">Quantity: {{product.Quantity}}</div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="d-grid gap-2 col-3 mx-auto">
+                    
+        <a href="{% url 'Cart' %}" class="btn btn-primary me-2">Back to Cart</a>         
+        
+    </div>
+

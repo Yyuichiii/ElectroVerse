@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="{% static 'Accounts/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'Accounts/css/cart.css' %}">
 
+    <!--Bootstrap CDN-->
     <link rel="stylesheet" 
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <!--Font Awesome CDN-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -26,15 +28,14 @@
      <!--Jquery-->
      <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-    
-     
+   
 
 </head>
 {% block style_container %} {% endblock style_container %}
-<body>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 
      <!-- Main Navigation -->
-    <nav>       
+    <nav id="nav">       
        
         <!-- Hamburger Menu Button to Show Sidebar on Mobile -->
         <div class="menu-button" onclick="toggleMenu()"><i class="fa fa-bars" style="font-size:24px"></i></div>
@@ -150,9 +151,9 @@
                     </button>
 
                     <div class="dropdown-content">
-                        <a href="#">Profile</a>
-                        <a href="#">Orders</a>
-                        <a href="#">Change Password</a>
+                        <a href="{% url 'Profile' %}">Profile</a>
+                        <a href="{% url 'Order' %}">Orders</a>
+                        <a href="{% url 'Password_Change' %}">Change Password</a>
                         <a href="{% url 'logout' %}">Logout</a>                         
                     </div>
                 </li>
@@ -221,8 +222,70 @@
 
     {% block main-content %} {% endblock main-content %}
     
-    <div class="footer">
-        <h4>Footer</h4>
+    <div class="footer">        
+        <footer class="footer-section">            
+            <div class="container">                
+                <div class="footer-cta pt-5 pb-5">
+                    <a href="#nav" style="float: right; color:#ff5e14">
+                        <i class="fa-solid fa-angle-up fa-bounce fa-flip-horizontal fa-2xl"></i>
+                    </a>
+                    <div class="row">
+                        <div class="col-xl-4 col-md-4 mb-30">
+                            <div class="single-cta">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="cta-text">
+                                    <h4>Find us</h4>
+                                    <span>Udaipur</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 mb-30">
+                            <div class="single-cta">
+                                <i class="fas fa-phone"></i>
+                                <div class="cta-text">
+                                    <h4>Call us</h4>
+                                    <span>9876543210 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 mb-30">
+                            <div class="single-cta">
+                                <i class="far fa-envelope-open"></i>
+                                <div class="cta-text">
+                                    <h4>Mail us</h4>
+                                    <span>mail@info.com</span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="copyright-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                            <div class="copyright-text">
+                                <p>Copyright &copy; 2024, All Right Reserved <a href="https://github.com/Yyuichiii/">Yyuichiii</a></p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Terms</a></li>
+                                    <li><a href="#">Privacy</a></li>
+                                    <li><a href="#">Policy</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
     

@@ -9,115 +9,72 @@
 {% block main-content %}
 
 
-<div class="cart" id="first">
-    <div class="container">
-        <div class="grid_12">
-            <h1>Your Cart <a id="arrow_down" href="#last" style="float: right;"><i
-                        class="fa-solid fa-angle-down fa-bounce fa-flip-horizontal fa-1xl"></i></a></h1>
 
+<div class="cart" id="first">
+    
+    <div class="cont">
+        
+        <div class="grid_12">
+            <h1>Your Cart 
+                <a id="arrow_down" href="#last" style="float: right;">
+                    <i class="fa-solid fa-angle-down fa-bounce fa-flip-horizontal fa-1xl"></i>
+                </a>
+            </h1>
         </div>
+        
         <ul class="items">
+            {% for product in products %}
             <li class="grid_4 item">
-                <a href="#" class="btn-remove">
+                <a href="{% url 'Remove_Cart' product.pk %}" class="btn-remove">
                     <i class="far fa-trash-alt"></i>
                 </a>
                 <div class="preview">
-                    <img class="product_image_cart" src="https://assets.cookfood.net/product_916_2793.jpg" />
+                    <img class="product_image_cart" src="{{product.Pid.P_image.url}}" />
                 </div>
-                <div class="details" data-price="15.50">
+                <div class="details">
                     <h3>
-                        Lasagne Al Forno
+                        {{product.Pid}}
                     </h3>
-                    <p>Rs. </p>
+                    <p>Rs. {{product.Pid.Price}} per {{product.Pid.Bundle_set}} </p>
 
                 </div>
                 <div class="inner_container">
 
-                    <div class="col_1of2 align-center picker">
+                    <div class="picker">
                         <p>
-                            <a href="#" class="btn-quantity plus">
+                            <a href="" class="btn-quantity plus"
+                            hx-get="{% url 'quantity_update' 'add' product.pk  %}"
+                            hx-swap="innerHTML"
+                            hx-target='.cn'>
                                 <i class="fa-solid fa-plus  fm-xl"></i>
                             </a>
-                        <div class="col_1of2 quantity-text">
-                            <p><span class="current_quantity">1</span></p>
-                        </div>
-                        <a href="#" class="btn-quantity minus">
-                            <i class="fas fa-minus fm-xl"></i>
-                        </a>
                         </p>
+
+                        <div class="col_1of2 quantity-text">
+                            <p>
+                                <span class="current_quantity" id="Qu{{product.pk}}">{{product.Quantity}}</span>
+                            </p>
+                        </div>
+
+                        <p>
+                            <a href="" class="btn-quantity minus"
+                            hx-get="{% url 'quantity_update' 'minus' product.pk  %}"
+                            hx-swap="innerHTML"
+                            hx-target='.cn'>
+                            
+                                <i class="fas fa-minus fm-xl"></i>
+                            </a>
+                        </p>
+
                         <input type="hidden" class="quantity_field" name="quantity" data-price="15.50" value="1" />
                     </div>
                 </div>
 
             </li>
-            <li class="grid_4 item">
-                <a href="#" class="btn-remove">
-                    <i class="far fa-trash-alt"></i>
-                </a>
-                <div class="preview">
-                    <img class="product_image_cart" src="https://assets.cookfood.net/product_811.jpg" />
-                </div>
-                <div class="details" data-price="2.49">
-                    <h3>
-                        Garlic Ciabatta
-                    </h3>
-                    <p>Serves 4</p>
-
-                </div>
-                <div class="inner_container">
-
-                    <div class="col_1of2 align-center picker">
-                        <p>
-                            <a href="#" class="btn-quantity plus">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        <div class="col_1of2 quantity-text">
-                            <p><span class="current_quantity">1</span> @ £2.49</p>
-                        </div>
-                        <a href="#" class="btn-quantity minus">
-                            <i class="fas fa-minus"></i>
-                        </a>
-                        </p>
-                        <input type="hidden" class="quantity_field" name="quantity" data-price="2.49" value="1" />
-                    </div>
-                </div>
-
-            </li>
-            <li class="grid_4 item">
-                <a href="#" class="btn-remove">
-                    <i class="far fa-trash-alt"></i>
-                </a>
-                <div class="preview">
-                    <img class="product_image_cart" src="https://assets.cookfood.net/product_1504.jpg" />
-                </div>
-                <div class="details" data-price="8.50">
-                    <h3>
-                        White Chocolate & Raspberry Cheesecake
-                    </h3>
-                    <p>Serves 6 (550g)</p>
-
-                </div>
-                <div class="inner_container">
-
-                    <div class="col_1of2 align-center picker">
-                        <p>
-                            <a href="#" class="btn-quantity plus">
-                                <i class="fa-solid fa-plus  fm-xl"></i>
-                            </a>
-                        <div class="col_1of2 quantity-text">
-                            <p><span class="current_quantity">1</span> @ £8.50</p>
-                        </div>
-                        <a href="#" class="btn-quantity minus">
-                            <i class="fas fa-minus fm-xl"></i>
-                        </a>
-                        </p>
-                        <input type="hidden" class="quantity_field" name="quantity" data-price="8.50" value="1" />
-                    </div>
-                </div>
-
-            </li>
+            {% endfor %}
+            
         </ul>
-
+        
         <div class="grid_12 summary" id="last">
             <a href="#first" style="float: right; "><i
                     class="fa-solid fa-angle-up fa-bounce fa-flip-horizontal fa-2xl"></i></a>
@@ -125,16 +82,29 @@
                 <div class="summary-content">
                     <div class="col_1of2 meta-data">
                         <div class="sub-total">
-                            <h3>Sub Total:</h3><span class="amount"></span>
+                            {% if cart_no == 0 %}
+                            <h3>Your Cart is Empty. Please Add something !!</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                            {% else %}
+                            <h3>Total: <strong id="ppp" style="font-size:50px">&#8377;{{Price}}/-</strong></h3><span class="amount"></span>
+                            
                         </div>
 
                     </div>                        
                 </div>
                 <div class="btn-summary">
 
-                    <a href="#" class="btn-checkout">Checkout</a>
+                    <a href="{% url 'Checkout' %}" class="btn-checkout">Checkout</a>
 
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
