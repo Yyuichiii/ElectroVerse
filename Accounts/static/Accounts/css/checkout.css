@@ -66,9 +66,20 @@
 	font-size: 2em;
    
   }
+
+#active_btn{
+	display: none;
+}
   
 .btn-place:hover{
 	background-color: rgb(165, 255, 47);
 	color: black;
   }
+
+#inactive_btn:hover{
+	background-color: rgb(255, 165, 47);
+	color: black;
+}
+
+
   

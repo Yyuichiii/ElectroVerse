@@ -123,6 +123,12 @@ def checkout_view(request):
     }
     return render(request,'Accounts/checkout.html',{'Price':tp['total_price'],'address':address_dict})
 
+#Place Order View
+@login_required
+def place_order_view(request):
+    messages.success(request,"Order has been successfully Placed")
+    return redirect('home')
+
 
 # Django View for handling Ajax request
 def add_to_cart(request, product_id):
@@ -226,9 +232,20 @@ class Address_Edit_view(View):
             obj=fm.save(commit=False)
             obj.user=request.user
             obj.save()
-            messages.success(request, "Address has been successfully changed !!!")
-            return redirect('Address')
+            messages.success(request, "Address has been successfully Set !!!")
+            previous_url = request.META.get('HTTP_REFERER')
+            return redirect(previous_url)
         else:
             messages.error(request, "Address not set !!!")
-            return render(request,'Accounts/address_display.html',{'form':fm})
+            previous_url = request.META.get('HTTP_REFERER')
+            return redirect(previous_url)
+            
+
+def summary(request):
+    if request.method=="DELETE":
+        return render(request,"Accounts/partial/hide_summary.html")
+
+    Sum(F('Pid__Price') * F('Quantity'))
+    products=Cart.objects.filter(user=request.user).annotate(Price=F('Quantity') * F('Pid__Price'))
+    return render(request,"Accounts/partial/summary_panel.html",{"products":products})
 
