@@ -3,13 +3,14 @@ from .forms import LoginForm,UserCreationForm,Password_change_form,UserChangeFor
 from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate,update_session_auth_hash
 from django.http import JsonResponse,HttpResponse
-from .models import Cart,Address
+from .models import Cart,Address,Order
 from Components.models import Product
 from django.db.models import Sum,F
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
-
+from django.db import transaction
+from django.core.paginator import Paginator
 # Create your views here.
 
 def home(request):
@@ -126,9 +127,38 @@ def checkout_view(request):
 #Place Order View
 @login_required
 def place_order_view(request):
+    with transaction.atomic():
+        products=Cart.objects.filter(user=request.user).annotate(Price=F('Quantity') * F('Pid__Price'))
+        orders_to_create = []
+        for product in products:
+            order = Order(
+                user=product.user,
+                Pid=product.Pid,
+                Quantity=product.Quantity,
+                Price=product.Price,
+            )
+            orders_to_create.append(order)
+
+        # Bulk create orders
+        order=Order.objects.bulk_create(orders_to_create)
+
+        # Delete cart items
+        products.delete()
+
     messages.success(request,"Order has been successfully Placed")
     return redirect('home')
 
+
+#Order View
+@login_required
+def Order_view(request):
+    orders = Order.objects.filter(user=request.user).order_by('-id')
+
+    paginator = Paginator(orders, 5)  # Show 5 orders per page.
+
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request,"Accounts/orders.html",{"orders":page_obj})
 
 # Django View for handling Ajax request
 def add_to_cart(request, product_id):

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User,Cart,Address
+from .models import User,Cart,Address,Order
 from .forms import UserChangeForm,UserCreationForm
 
 # Register your models here.
@@ -52,3 +52,10 @@ class AddressAdmin(admin.ModelAdmin):
     list_display = ['user', 'Name', 'Phone']
 
 admin.site.register(Address, AddressAdmin)
+
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['user', 'Price', 'Pid','Time']
+    list_filter = ['user','Time',]
+
+admin.site.register(Order, OrderAdmin)
