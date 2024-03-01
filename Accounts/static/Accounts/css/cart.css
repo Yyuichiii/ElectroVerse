@@ -267,7 +267,11 @@ html {
   .btn-quantity {
     font-size: 0.6em;
   }
-  
+  .product_image_cart {
+    width: 65px;
+    height: 10px;
+    vertical-align: sub;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -349,6 +353,16 @@ html {
 #arrow_down{
   display: none;
 }
+
+.product_image_cart {
+  width: 280px;
+  height: 300px;
+  margin: auto;
+}
+.preview{
+  text-align: center;
+}
+
 }
 
 @media only screen and (max-width: 480px) {
