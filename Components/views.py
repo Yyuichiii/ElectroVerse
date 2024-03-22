@@ -18,12 +18,8 @@ def Components_view(request,Category,type):
 def Products_list_view(request, *args, **kwargs):
         type_value = request.GET.get('type')
         products=Product.objects.filter(Type=type_value)
-
-        # component=Component.objects.get(Type=type_value)
         return render(request,'Components/products_list.html',{'Products':products})
-    # except:
-    #     print('sdf')
-    #     return render(request,'Components/products_list.html')
+
 
 
 def Products_Content_view(request,pk):    
