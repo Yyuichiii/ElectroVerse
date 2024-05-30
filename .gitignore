@@ -22,6 +22,7 @@ venv/
 
 # Compiled Python files
 *.pyc
+**/*.pyc
 
 # Mac OSX specific files
 .DS_Store
