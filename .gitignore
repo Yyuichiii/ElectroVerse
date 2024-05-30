@@ -8,7 +8,7 @@ __pycache__/
 
 # Secret keys
 *.secret_key
-
+.py[c]
 # Environment variables
 .env
 
