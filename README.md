@@ -48,6 +48,19 @@ To run this project locally, follow the steps below:
 - Bootstrap
 - Django
 
+
+## Screenshots
+Here are some screenshots of the ElectroVerse website:
+
+![Screenshot 1](Screenshot/Screenshot_1.png)
+![Screenshot 2](Screenshot/Screenshot_2.png)
+![Screenshot 3](Screenshot/Screenshot_3.png)
+![Screenshot 4](Screenshot/Screenshot_4.png)
+![Screenshot 5](Screenshot/Screenshot_5.png)
+![Screenshot 6](Screenshot/Screenshot_6.png)
+![Screenshot 7](Screenshot/Screenshot_7.png)
+![Screenshot 8](Screenshot/Screenshot_8.png)
+
 ## Collaborators
 
 - **Ritik** - Backend Developer
